@@ -1,0 +1,19 @@
+.subtasks__task{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem 1rem 1rem 1.5rem;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    border-left: 3px solid lightgreen;
+}
+
+.subtasks_add{
+    border: none;
+}
+
+.subtasks_add:focus{
+    outline: none;
+    font-size: 1.2rem;   
+}
