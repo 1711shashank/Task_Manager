@@ -12,6 +12,7 @@ const SubTask = (props) => {
         e.preventDefault();
         const newEntry = { id: Math.random()*10,  SubTaskName : newSubTask, SubTaskStatus:false };
         setSubTasks([...subTasks, newEntry]);
+        setNewSubTask('');
 
     }
 

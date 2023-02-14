@@ -1,6 +1,7 @@
 .tasks{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .task{
     margin: 1rem;
