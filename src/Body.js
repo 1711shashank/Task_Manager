@@ -1,5 +1,6 @@
 import React from 'react'
 import TasksBox from './TasksBox'
+import Tracker from './Tracker'
 import './Body.css'
 
 const Body = () => {
@@ -7,6 +8,7 @@ const Body = () => {
         <>
             <div className='body'>
                 <TasksBox/>
+                <Tracker/>
             </div>
         </>
 

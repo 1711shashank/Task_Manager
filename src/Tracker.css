@@ -1,0 +1,30 @@
+.tracker{
+    width: 30%;
+    background-color: #E2E8F0;
+}
+
+.tracker > p{
+    font-size: 2.5rem;
+    padding: 1rem;
+    border-bottom: 1px solid gray;
+
+}
+
+/* https://play.google.com/store/apps/details?id=com.virblue.mystudylife&hl=en&gl=US */
+.tracker__components{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem;
+    border-bottom: 1px solid gray;
+}
+
+.tracker__date{
+    font-size: 1.4rem;
+}
+
+.tracker__Topics > p{
+    font-size: 1.4rem;
+    padding: 0.2rem;
+    margin-left: 2rem ;
+}
