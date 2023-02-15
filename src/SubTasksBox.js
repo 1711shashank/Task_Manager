@@ -1,23 +1,28 @@
 import React, { useState } from 'react'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
-import './SubTasks.css'
+import './SubTasksBox.css'
 
-const SubTask = (props) => {
+const SubTasksBox = (props) => {
 
-    const [subTasks, setSubTasks] = useState(props.SubTask);
+    const {id, SubTasks} = props.SubTask;
+
+    const [subTasks, setSubTasks] = useState(SubTasks);
     const [newSubTask, setNewSubTask] = useState('');
 
-    const addNewSubTask = (e) => {
+    const addNewSubTask = async (e) => {
         e.preventDefault();
-        const newEntry = { id: Math.random()*10,  SubTaskName : newSubTask, SubTaskStatus:false };
+        const newEntry = { id: Math.random() * 10, SubTaskName: newSubTask, SubTaskStatus: false };
+
         setSubTasks([...subTasks, newEntry]);
         setNewSubTask('');
+
+        props.changeDataTable({id, subTasks});
 
     }
 
     const removeSubTask = (id) => {
-        const tempArray = subTasks.filter((curEle)=>{
+        const tempArray = subTasks.filter((curEle) => {
             return curEle.id !== id;
         });
         setSubTasks(tempArray);
@@ -27,20 +32,21 @@ const SubTask = (props) => {
         <>
             <div className='subtasks' action='' onSubmit={addNewSubTask}>
                 <form className='subtasks__task'>
-                    
-                    <input 
-                        className='subtasks_add' 
-                        placeholder="Add Task" 
-                        type='text' 
+
+                    <input
+                        className='subtasks_add'
+                        placeholder="Add Task"
+                        type='text'
                         value={newSubTask}
                         onChange={(e) => setNewSubTask(e.target.value)}
                         required
-                    />                    
+                    />
                 </form>
+
                 {subTasks.map((subTask) => (
                     <div className='subtasks__task' key={subTask.id}>
                         <p>{subTask.SubTaskName}</p>
-                        <DeleteOutlineIcon onClick={ () => removeSubTask(subTask.id)}/>
+                        <DeleteOutlineIcon onClick={() => removeSubTask(subTask.id)} />
                     </div>
                 ))}
             </div>
@@ -48,4 +54,4 @@ const SubTask = (props) => {
     )
 }
 
-export default SubTask
+export default SubTasksBox

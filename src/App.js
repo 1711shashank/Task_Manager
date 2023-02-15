@@ -1,7 +1,7 @@
 import './App.css';
-import Tasks from './Tasks';
 import Header from './Header';
 import Navbar from './Navbar';
+import Body from './Body';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <div className="App">
         <Header />
         <Navbar />
-        <Tasks />
+        <Body />
       </div>
     </>
   );

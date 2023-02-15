@@ -1,12 +1,12 @@
-import Task from '@mui/icons-material'
 import React from 'react'
+import TasksBox from './TasksBox'
 import './Body.css'
 
 const Body = () => {
     return (
         <>
             <div className='body'>
-                <Task/>
+                <TasksBox/>
             </div>
         </>
 
