@@ -1,7 +1,6 @@
-import { createContext, useContext, useReducer } from "react";
-import updateTask from './Reducers';
+import { createContext } from "react";
 
-const DataBase = createContext();
+const DataBase = createContext(null);
 
 const Context = ({children}) => {
 
@@ -17,7 +16,7 @@ const Context = ({children}) => {
                     SubTasks: [{ id: 1, SubTaskName: "Read Redux", SubTaskStatus: true },{ id: 2, SubTaskName: "SubTask 1", SubTaskStatus: true }] 
                 },
                 { 
-                    id: 11, 
+                    id: 12, 
                     TaskName: 'Task 1', 
                     SubTasksFinished : 1, 
                     SubTasksTotal:5, 
@@ -40,23 +39,16 @@ const Context = ({children}) => {
         }
     ]
 
-    const TasksDataTable = [
-        { id: 11, TaskName: 'Task 1', SubTasksFinished : 1, SubTasksTotal:5, SubTasks: [{ id: 1, SubTaskName: "Read Redux", SubTaskStatus: true },{ id: 2, SubTaskName: "SubTask 1", SubTaskStatus: true }] },
-        { id: 22, TaskName: 'Task 2', SubTasksFinished : 2, SubTasksTotal:5, SubTasks: [{ id: 1, SubTaskName: "SubTask 1", SubTaskStatus: true },{ id: 2, SubTaskName: "SubTask 1", SubTaskStatus: true }] },
-        { id: 33, TaskName: 'Task 3', SubTasksFinished : 3, SubTasksTotal:5, SubTasks: [{ id: 1, SubTaskName: "SubTask 1", SubTaskStatus: true },{ id: 2, SubTaskName: "SubTask 1", SubTaskStatus: true }] },
-    ];
 
-    const [state, dispatch] = useReducer( updateTask, {TasksDataTable} );
+
+    // const [state, dispatch] = useReducer( updateTask, {TasksDataTable} );
 
     return (
-        <DataBase.Provider value={{state, dispatch}}>
+        <DataBase.Provider value={DataTable}>
             {children}
         </DataBase.Provider>
     )
 }
 
-export const TaskState = () =>{
-    return useContext(DataBase);
-}
-
+export {DataBase};
 export default Context;

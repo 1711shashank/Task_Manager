@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import SubTasksBox from './SubTasksBox'
+import {DataBase} from '../Context/Context'
 import './TasksBox.css'
 
 const TasksBox = () => {
-    const TasksDataTable = [
-        { id: 11, TaskName: 'Task 1', SubTasksFinished : 1, SubTasksTotal:5, SubTasks: [{ id: 1, SubTaskName: "Read Redux", SubTaskStatus: true },{ id: 2, SubTaskName: "SubTask 1", SubTaskStatus: true }] },
-        { id: 22, TaskName: 'Task 2', SubTasksFinished : 2, SubTasksTotal:5, SubTasks: [{ id: 1, SubTaskName: "SubTask 1", SubTaskStatus: true },{ id: 2, SubTaskName: "SubTask 1", SubTaskStatus: true }] },
-        { id: 33, TaskName: 'Task 3', SubTasksFinished : 3, SubTasksTotal:5, SubTasks: [{ id: 1, SubTaskName: "SubTask 1", SubTaskStatus: true },{ id: 2, SubTaskName: "SubTask 1", SubTaskStatus: true }] },
-    ];
 
-    const [tasks, setTasks] = useState(TasksDataTable);
+    const data = useContext(DataBase);
+    const [TasksDataTable, setTasksDataTable] = useState(data[0]);
+    const [tasks, setTasks] = useState(TasksDataTable.TaskSheet);
 
     const updateDataTable = (subTasks) => { 
         console.log("ChildDate", subTasks);
