@@ -1,9 +1,14 @@
 .tracker{
-    width: 30%;
-    background-color: #E2E8F0;
+    width: 20%;
+    height: 100% ;
+    background-color: white;
+    float: right;
+
+    right: 0;
+    /* border-left: 1px solid black; */
 }
 
-.tracker > p{
+.tracker__heading{
     font-size: 2.5rem;
     padding: 1rem;
     border-bottom: 1px solid gray;
@@ -15,16 +20,20 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 2rem;
+    padding: 1rem;
     border-bottom: 1px solid gray;
+    border-left: 4px solid lightgreen;
 }
 
 .tracker__date{
     font-size: 1.4rem;
 }
 
-.tracker__Topics > p{
-    font-size: 1.4rem;
+.tracker__Topics > li{
+    font-size: 1.2rem;
+    color: gray;
     padding: 0.2rem;
     margin-left: 2rem ;
+    
 }
+

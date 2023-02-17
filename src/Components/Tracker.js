@@ -20,7 +20,7 @@ const Tracker = () => {
     return (
         <>
             <div className='tracker'>
-               <p>Learning Tracker</p>
+               <p className='tracker__heading'>Learning Tracker</p>
                 {lessonsArray.map((lessonsArrayByDate) => (
                     <div className='tracker__components' key={lessonsArrayByDate.id}>
                         <p className='tracker__date'>{lessonsArrayByDate.Date}</p>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import './SubTasksBox.css'
@@ -12,21 +12,25 @@ const SubTasksBox = (props) => {
 
     const addNewSubTask = async (e) => {
         e.preventDefault();
+
         const newEntry = { id: Math.random() * 10, SubTaskName: newSubTask, SubTaskStatus: false };
 
         setSubTasks([...subTasks, newEntry]);
         setNewSubTask('');
-
-        props.changeDataTable({id, subTasks});
-
+ 
     }
-
+    
     const removeSubTask = (id) => {
         const tempArray = subTasks.filter((curEle) => {
             return curEle.id !== id;
         });
         setSubTasks(tempArray);
     }
+
+
+    useEffect(()=>{
+        props.changeDataTable({id, subTasks});
+    },[subTasks]);
 
     return (
         <>

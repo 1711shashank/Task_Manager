@@ -7,8 +7,8 @@ const Body = () => {
     return (
         <>
             <div className='body'>
-                <TasksBox/>
-                <Tracker/>
+                <TasksBox />
+                {/* <Tracker/> */}
             </div>
         </>
 
