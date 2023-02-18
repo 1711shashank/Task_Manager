@@ -10,7 +10,7 @@ const SubTasksBox = (props) => {
     const [subTasks, setSubTasks] = useState(SubTasks);
     const [newSubTask, setNewSubTask] = useState('');
 
-    const addNewSubTask = async (e) => {
+    const addNewSubTask = (e) => {
         e.preventDefault();
 
         const newEntry = { id: Math.random() * 10, SubTaskName: newSubTask, SubTaskStatus: false };
