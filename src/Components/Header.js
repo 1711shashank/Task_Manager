@@ -7,11 +7,9 @@ const Header = () => {
 
     const taskSheet = useContext(TaskContext);
 
-    const addNewTask = () => {
-        const newEntry = { id: new Date().getTime(), TaskName: 'New Task', SubTasks: [] };
-
+    const addTask = () => {
+        const newEntry = { id: new Date().getTime(), TaskName: 'New Task', SubTasks: []};
         taskSheet.addNewTask(newEntry);
-
     }
 
     return (
@@ -21,7 +19,7 @@ const Header = () => {
                     <p>Task Manager</p>
                 </div>
                 <div className='header__right'>
-                    <Button variant="outlined" size="large" onClick={addNewTask}>Add Task</Button>
+                    <Button variant="outlined" size="large" onClick={addTask}>Add Task</Button>
                     <Button variant="outlined" size="large">Sign Up</Button>
                     <Button variant="contained" size="large">Sign In</Button>
                 </div>

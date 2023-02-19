@@ -3,11 +3,9 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import './SubTasksBox.css'
 
-const SubTasksBox = (props) => {
+const SubTasksBox = () => {
 
-    const {SubTasks} = props.SubTask;
-
-    const [subTasks, setSubTasks] = useState(SubTasks);
+    const [subTasks, setSubTasks] = useState([]);
     const [newSubTask, setNewSubTask] = useState('');
 
     const addNewSubTask = (e) => {
@@ -29,8 +27,8 @@ const SubTasksBox = (props) => {
     return (
         <>
             <div className='subtasks' action='' onSubmit={addNewSubTask}>
+                
                 <form className='subtasks__task'>
-
                     <input
                         className='subtasks_add'
                         placeholder="Add Task"

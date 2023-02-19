@@ -1,9 +1,8 @@
 import { useState } from "react"
 import TaskContext from './TaskContext'
 
-
 const TaskProvider = (props) => {
-
+    
     const DataTable = [
         {
             TaskSheet:[
@@ -17,9 +16,11 @@ const TaskProvider = (props) => {
     ];
 
     const [task, setTask] = useState(DataTable[0].TaskSheet);
+
     const addNewTask = (newTask) => {
         setTask((preTasks) => [...preTasks, newTask]);
     };
+
     const taskSheet = {
         tasks: task,
         addNewTask: addNewTask

@@ -11,7 +11,6 @@ const Body = () => {
                 {/* <Tracker/> */}
             </div>
         </>
-
     )
 }
 
