@@ -31,26 +31,3 @@ const Header = () => {
 
 export default Header;
 
-
-
-
-    // const data = useContext(DataBase);
-    // console.log("Database",data);
-    // const [TasksDataTable, setTasksDataTable] = useState(data[0].TaskSheet);
-    
-    // const addTask = () => {
-
-    //     const newEntry = { 
-    //         id: 13, 
-    //         TaskName: 'New Task', 
-    //         SubTasksFinished : 1, 
-    //         SubTasksTotal:5, 
-    //         SubTasks: [] 
-    //     };
-    //     console.log(TasksDataTable);
-    //     setTasksDataTable([...TasksDataTable,newEntry]);
-    // }
-
-    // useEffect(()=>{
-    //     console.log("UseEffect");
-    // }, [TasksDataTable]);

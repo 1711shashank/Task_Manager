@@ -1,3 +1,6 @@
+.timeLine{
+    margin: 1.5rem;
+}
 .timeLine__container{
     margin-left: 1.6rem;
 }
@@ -11,7 +14,7 @@
     border:1px solid gray !important;
 }
 .timeLine__logo{
-    color: #aeaeae;
+    color: #4b4b4b;
 }
 .timeLine__date{
     font-size: 1.2rem;
@@ -21,20 +24,20 @@
 
 .timeLine__containerDown{
     padding: 1rem 0;
-    margin-left: 0.5rem;
-    border-left: 2px solid #aeaeae;
+    margin-left: 0.65rem;
+    border-left: 1.5px solid #aeaeae;
 }
 
 .timeLine__dayItems{
     margin-left: 1.5rem;
-    border: 1px solid gray;
+    border: 1px solid lightgray;
     border-radius: 0.9rem;
     background-color: white ;
 }
 
 .timeLine__dayItems > li{
     padding: 1rem;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid lightgray;
     list-style-type: none;
 }
 .timeLine__dayItems > li:last-child{

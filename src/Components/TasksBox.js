@@ -11,7 +11,6 @@ const TasksBox = () => {
         <>
             {taskCtx.tasks.map((item) => (
                 <div className='task' key={item.id}>
-
                     <div className='task__header'>
                         <p className='task__name'> {item.TaskName}</p>
                     </div>
