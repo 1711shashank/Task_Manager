@@ -8,6 +8,8 @@ import TaskContext from '../Context/TaskContext';
 const SideBar = () => {
 
     const timeSheet = useContext(TaskContext);
+    console.log(timeSheet.dailyActivities);
+
 
     const addActivity = () => {
         const newEntry = {
@@ -25,62 +27,33 @@ const SideBar = () => {
 
     return (
         <>
-            {
-                timeSheet.dailyActivities.map((item) => (
-                    <div className='timeLine' key={item.id}>
-                        <div className='timeLine__header'>
-                            <Button className='timeLine__addButon' variant="outlined" startIcon={<AddIcon />} onClick={addActivity}>Add</Button>
-                        </div>
-                        <div className='timeLine__body'>
-
-                            <div className='timeLine__container'>
-                                <div className='timeLine__containerDown'>
-                                </div>
+            <div className='timeLine'>
+                <div className='timeLine__header'>
+                    <Button className='timeLine__addButon' variant="outlined" onClick={addActivity} startIcon={<AddIcon />}>Add</Button>
+                </div>
+                <div className='timeLine__body'>
+                    {timeSheet.dailyActivities.map((item1) => (
+                        <div className='timeLine__container' key={item1.id}>
+                            <div className='timeLine__containerUp'>
+                                <CommitIcon className='timeLine__logo' />
+                                <p className='timeLine__date'>{item1.Date}</p>
                             </div>
-                            <div className='timeLine__container'>
-                                <div className='timeLine__containerUp'>
-                                    <CommitIcon className='timeLine__logo' hight="200px" />
-                                    <p className='timeLine__date'>{item.Date}</p>
-                                </div>
-                                <div className='timeLine__containerDown'>
-                                    <div className='timeLine__day'>
-                                        <ol className='timeLine__dayItems'>
-
-                                            {item.TimeSheet.map((timeSheetItem) => (
-                                                <li className='timeLine__dayItem' key={timeSheetItem.id}>
-                                                    <h2>{timeSheetItem.Topic}</h2>
-                                                    <p>{timeSheetItem.Description}</p>
-                                                </li>
-                                            ))}
-                                        </ol>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className='timeLine__container'>
-                                <div className='timeLine__containerUp'>
-                                    <CommitIcon className='timeLine__logo' />
-                                    <p className='timeLine__date'>Feb 19, 2023</p>
-                                </div>
-                                <div className='timeLine__containerDown'>
-                                    <div className='timeLine__day'>
-                                        <ol className='timeLine__dayItems'>
-                                            <li className='timeLine__dayItem'>
-                                                <h2>Topice Heading slkfjsdlkmcdsm</h2>
-                                                <p>Discription</p>
+                            <div className='timeLine__containerDown'>
+                                <div className='timeLine__day'>
+                                    <ol className='timeLine__dayItems'>
+                                        {item1.TimeSheet.map((item2) => (
+                                            <li className='timeLine__dayItem' key={item2.id}>
+                                                <h2>{item2.Topic}</h2>
+                                                <p> {item2.Description} </p>
                                             </li>
-                                            <li className='timeLine__dayItem'>
-                                                <h2>Topice Heading</h2>
-                                                <p> Emmet is an awesome tool. </p>
-                                            </li>
-                                        </ol>
-                                    </div>
+                                        ))}
+                                    </ol>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                ))
-            }
+                    ))}
+                </div>
+            </div>
         </>
     )
 }
