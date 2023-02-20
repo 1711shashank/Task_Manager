@@ -1,7 +1,5 @@
 .timeLine__container{
     margin-left: 1.6rem;
-    /* padding-left: 1rem; */
-    border-left: 2px solid #aeaeae;
 }
 .timeLine__containerUp{
     display: flex;
@@ -9,10 +7,7 @@
     align-items: center;
 }
 .timeLine__addButon{
-    /* font-weight: 600 !important; */
-    /* background-color:  #E2E8F0 !important; */
     color: gray !important;
-    /* line-height:1.2 !important;  */
     border:1px solid gray !important;
 }
 .timeLine__logo{
@@ -20,8 +15,14 @@
 }
 .timeLine__date{
     font-size: 1.2rem;
-    padding: 1rem;
+    padding: 0rem 1.5rem 0rem 1.5rem ;
     color: gray;
+}
+
+.timeLine__containerDown{
+    padding: 1rem 0;
+    margin-left: 0.5rem;
+    border-left: 2px solid #aeaeae;
 }
 
 .timeLine__dayItems{
