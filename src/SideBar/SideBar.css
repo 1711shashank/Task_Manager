@@ -1,0 +1,66 @@
+.timeLine__container{
+    margin-left: 1.6rem;
+    /* padding-left: 1rem; */
+    border-left: 2px solid #aeaeae;
+}
+.timeLine__containerUp{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.timeLine__addButon{
+    /* font-weight: 600 !important; */
+    /* background-color:  #E2E8F0 !important; */
+    color: gray !important;
+    /* line-height:1.2 !important;  */
+    border:1px solid gray !important;
+}
+.timeLine__logo{
+    color: #aeaeae;
+}
+.timeLine__date{
+    font-size: 1.2rem;
+    padding: 1rem;
+    color: gray;
+}
+
+.timeLine__dayItems{
+    margin-left: 1.5rem;
+    border: 1px solid gray;
+    border-radius: 0.9rem;
+    background-color: white ;
+}
+
+.timeLine__dayItems > li{
+    padding: 1rem;
+    border-bottom: 1px solid gray;
+    list-style-type: none;
+}
+.timeLine__dayItems > li:last-child{
+    border-bottom: none;
+}
+
+.timeLine__dayItems > li:hover{
+    background-color: #E2E8F0;
+}
+.timeLine__dayItems > li:hover:first-child{
+    background-color: #E2E8F0;
+    border-radius: 0.8rem 0.8rem 0 0;
+}
+.timeLine__dayItems > li:hover:last-child{
+    background-color: #E2E8F0;
+    border-radius: 0 0 0.8rem 0.8rem;
+}
+
+.timeLine__dayItem > h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+
+.timeLine__dayItem > p {
+    color: gray;
+    font-size: 1.2rem;
+}
+
+

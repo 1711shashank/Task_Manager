@@ -1,14 +1,14 @@
 import React from 'react'
 import TasksBox from './TasksBox'
-import Tracker from './Tracker'
 import './Body.css'
+import SideBar from '../SideBar/SideBar'
 
 const Body = () => {
     return (
         <>
             <div className='body'>
                 <TasksBox />
-                {/* <Tracker/> */}
+                <SideBar/>
             </div>
         </>
     )
