@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import TaskContext from '../Context/TaskContext';
 
 
@@ -25,17 +25,29 @@ const AddActivityModal = ({ closeModal }) => {
         closeModal();
     }
 
+    useEffect(()=>{
+        document.body.style.overflowY = 'hidden';
+        return () => {
+            document.body.style.overflowY = 'scroll';
+        };
+    },[])
+
 
     return (
         <>
-            <div className='modal'>
-                <h1 className='modal__heading'>Add Today's Activity</h1>
-                <form className='modal__form'>
-                    <input className='modal__inputBoxTopic' placeholder='Topic' onChange={(e) => setTopic(e.target.value)} required></input>
-                    <textarea className='modal__inputBoxDescription' placeholder='Description'onChange={(e) => setDescription(e.target.value)}></textarea>
-                    <Button variant="contained" size="large" className='modal__saveButton' onClick={addActivity}> Save </Button>
-                </form>
+            <div className='modal__wrapper'>
             </div>
+            <div className='modal__container'>
+                <div className='modal'>
+                    <h1 className='modal__heading'>Add Today's Activity</h1>
+                    <form className='modal__form'>
+                        <input className='modal__inputBoxTopic' placeholder='Topic' onChange={(e) => setTopic(e.target.value)} required></input>
+                        <textarea className='modal__inputBoxDescription' placeholder='Description' onChange={(e) => setDescription(e.target.value)}></textarea>
+                        <Button variant="contained" size="large" className='modal__saveButton' onClick={addActivity}> Save </Button>
+                    </form>
+                </div>
+            </div>
+
 
         </>
     )
