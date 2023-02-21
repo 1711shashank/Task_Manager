@@ -6,6 +6,7 @@ import TaskContext from '../Context/TaskContext';
 const AddActivityModal = ({ closeModal }) => {
 
     const [topic, setTopic] = useState('');
+    const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
 
     const timeSheet = useContext(TaskContext);
@@ -13,15 +14,13 @@ const AddActivityModal = ({ closeModal }) => {
     const addActivity = () => {
         const newEntry = {
             id: new Date().getTime(),
-            Date: new Date().toDateString(),
+            Date: date,
             TimeSheet: [
                 { id: 1, Topic: topic, Description: description }
             ]
         };
 
         timeSheet.addNewActivity(newEntry);
-        console.log(timeSheet);
-
         closeModal();
     }
 
@@ -42,6 +41,7 @@ const AddActivityModal = ({ closeModal }) => {
                     <h1 className='modal__heading'>Add Today's Activity</h1>
                     <form className='modal__form'>
                         <input className='modal__inputBoxTopic' placeholder='Topic' onChange={(e) => setTopic(e.target.value)} required></input>
+                        <input className='modal__inputBoxTopic' placeholder='Topic' onChange={(e) => setDate(e.target.value)} required></input>
                         <textarea className='modal__inputBoxDescription' placeholder='Description' onChange={(e) => setDescription(e.target.value)}></textarea>
                         <Button variant="contained" size="large" className='modal__saveButton' onClick={addActivity}> Save </Button>
                     </form>

@@ -38,15 +38,17 @@ const TaskProvider = (props) => {
     const addNewTask = (newEntry) => {
         setTasks((preEntry) => [...preEntry, newEntry]);
     };
+    const updateTaskList = (newTaskList) => {
+        setTasks(newTaskList);
+    };
     const addNewActivity = (newEntry) => {
-
         setDailyActivities((preEntry) => [...preEntry, newEntry]);
     };
 
 
 
     return (
-        <TaskContext.Provider value={{ tasks, addNewTask, dailyActivities, addNewActivity }}>
+        <TaskContext.Provider value={{ tasks, addNewTask, updateTaskList, dailyActivities, addNewActivity }}>
             {props.children}
         </TaskContext.Provider>
     )

@@ -1,22 +1,11 @@
-.tasks{
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
 .task{
     margin: 1rem;
     padding-top: 1rem;
     background-color: #E2E8F0;
-    width: 30rem;
+    min-width: 30rem;
+    max-width: 30rem;
     aspect-ratio: 3/4;
     border-radius: 10px;
-    display: flex;
-
-    justify-content: flex-start;
-    flex-direction: column;
-
-
 }
 .task__header{
     display: flex;
