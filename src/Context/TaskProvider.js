@@ -15,19 +15,17 @@ const TaskProvider = (props) => {
         TimeSheet: [
             {
                 id: 55,
-                Date: 11,
+                Date: new Date().toDateString(),
                 TimeSheet: [
-                    { id: 1, Topic: 'Topic Heading 1', Description: 'Description' },
-                    { id: 2, Topic: 'Topic Heading 2', Description: 'dsfjh' }
+                    { id: 2, Topic: 'Topic Heading 1', Description: 'dsfjh' }
                 ]
             },
             {
                 id: 555,
-                Date: 12,
+                Date: new Date().toDateString(),
                 TimeSheet: [
-                    { id: 1, Topic: 'Topic Heading 1', Description: 'Description' },
-                    { id: 2, Topic: 'Topic Heading 2', Description: 'Descripsdlkfjstion' },
-                    { id: 3, Topic: 'Topic Heading 3', Description: 'wejfkhiuweodkmio' }
+                    { id: 1, Topic: 'Topic Heading 1', Description: 'Description wrjkhfuiklmscd iowerj wkefewf wef' },
+                    { id: 2, Topic: 'Topic Heading 2', Description: 'Descripsdlkfjstion' }
                 ]
             }
         ]

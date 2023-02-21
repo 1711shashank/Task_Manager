@@ -1,35 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import CommitIcon from '@mui/icons-material/Commit';
 import './SideBar.css'
 import { Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import TaskContext from '../Context/TaskContext';
+import AddActivityModal from './AddActivityModal';
 
 const SideBar = () => {
 
     const timeSheet = useContext(TaskContext);
-    console.log(timeSheet.dailyActivities);
 
-
-    const addActivity = () => {
-        const newEntry = {
-            id: new Date().getTime(),
-            Date: new Date().toDateString(),
-            TimeSheet: [
-                { id: 1, Topic: 'Topic Heading 1', Description: 'Description' },
-                { id: 2, Topic: 'Topic Heading 2', Description: '' }
-            ]
-        };
-
-        timeSheet.addNewActivity(newEntry);
-        console.log(timeSheet.dailyActivities);
-    }
+    const [showModal,setShowModal] = useState(false);
 
     return (
         <>
+            
             <div className='timeLine'>
                 <div className='timeLine__header'>
-                    <Button className='timeLine__addButon' variant="outlined" onClick={addActivity} startIcon={<AddIcon />}>Add</Button>
+                    <Button className='timeLine__addButon' variant="outlined" onClick={()=> setShowModal(true)} startIcon={<AddIcon />}>Add</Button>
                 </div>
                 <div className='timeLine__body'>
                     {timeSheet.dailyActivities.map((item1) => (
@@ -54,6 +42,9 @@ const SideBar = () => {
                     ))}
                 </div>
             </div>
+
+            { showModal && <AddActivityModal closeModal={()=> setShowModal(false)}/>}
+
         </>
     )
 }
