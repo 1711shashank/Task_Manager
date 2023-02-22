@@ -1,14 +1,15 @@
-.body{
+.body {
+    padding: 1rem;
     display: flex;
-    width: 100vw;
     background-color: #FAFBFB;
 }
 
-.body__taskBox{
+.body__taskBox {
     width: 70%;
     display: flex;
     flex-wrap: wrap;
 }
-.body__SideBar{
+
+.body__sideBar {
     width: 30%;
 }

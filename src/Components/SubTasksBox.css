@@ -1,4 +1,4 @@
-.subtasks__task{
+.subtasks__task {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,11 +9,11 @@
     border-left: 3px solid lightgreen;
 }
 
-.subtasks_add{
+.subtasks_add {
     border: none;
 }
 
-.subtasks_add:focus{
+.subtasks_add:focus {
     outline: none;
-    font-size: 1.2rem;   
+    font-size: 1.2rem;
 }

@@ -2,7 +2,6 @@ import { Button } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react'
 import TaskContext from '../Context/TaskContext';
 
-
 const AddActivityModal = ({ closeModal }) => {
 
     const [topic, setTopic] = useState('');
@@ -40,8 +39,8 @@ const AddActivityModal = ({ closeModal }) => {
                 <div className='modal'>
                     <h1 className='modal__heading'>Add Today's Activity</h1>
                     <form className='modal__form'>
-                        <input className='modal__inputBoxTopic' placeholder='Topic' onChange={(e) => setTopic(e.target.value)} required></input>
-                        <input className='modal__inputBoxTopic' placeholder='Topic' onChange={(e) => setDate(e.target.value)} required></input>
+                        <input className='modal__inputBoxTopic' placeholder='Topic' type='text' onChange={(e) => setTopic(e.target.value)} required></input>
+                        <input className='modal__inputBoxTopic' placeholder='Topic' type='date' onChange={(e) => setDate(e.target.value)} required></input>
                         <textarea className='modal__inputBoxDescription' placeholder='Description' onChange={(e) => setDescription(e.target.value)}></textarea>
                         <Button variant="contained" size="large" className='modal__saveButton' onClick={addActivity}> Save </Button>
                     </form>
