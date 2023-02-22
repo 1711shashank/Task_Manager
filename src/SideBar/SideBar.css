@@ -64,6 +64,10 @@
     background-color: #E2E8F0;
     border-radius: 0 0 0.8rem 0.8rem;
 }
+.timeLine__dayItems>li:hover:only-child {
+    background-color: #E2E8F0;
+    border-radius: 0.8rem 0.8rem 0.8rem 0.8rem;
+}
 
 .timeLine__dayItem>h2 {
     font-size: 1.5rem;
