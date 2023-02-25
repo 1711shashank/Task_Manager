@@ -9,17 +9,23 @@ const AddActivityModal = ({ closeModal }) => {
     const [description, setDescription] = useState('');
 
     const timeSheet = useContext(TaskContext);
+    console.log(timeSheet.dailyActivities);
 
     const addActivity = () => {
         const newEntry = {
             id: new Date().getTime(),
-            Date: date,
-            TimeSheet: [
-                { id: 1, Topic: topic, Description: description }
-            ]
+            Date: '2023-02-25',
+            Activity: [{ id: new Date().getTime(), Topic: topic, Description: description }]
         };
 
-        timeSheet.addNewActivity(newEntry);
+        let tempArray = timeSheet.dailyActivities.filter((curEle) => {
+            return curEle.Date === date;
+        });
+        if(tempArray.length)
+            tempArray[0].Activity.push(newEntry.Activity[0]);
+        else
+            timeSheet.addNewActivity(newEntry);
+
         closeModal();
     }
 
@@ -38,11 +44,11 @@ const AddActivityModal = ({ closeModal }) => {
             <div className='modal__container'>
                 <div className='modal'>
                     <h1 className='modal__heading'>Add Today's Activity</h1>
-                    <form className='modal__form'>
+                    <form className='modal__form' onSubmit={addActivity}>
                         <input className='modal__inputBoxTopic' placeholder='Topic' type='text' onChange={(e) => setTopic(e.target.value)} required></input>
                         <input className='modal__inputBoxTopic' placeholder='Topic' type='date' onChange={(e) => setDate(e.target.value)} required></input>
                         <textarea className='modal__inputBoxDescription' placeholder='Description' onChange={(e) => setDescription(e.target.value)}></textarea>
-                        <Button variant="contained" size="large" className='modal__saveButton' onClick={addActivity}> Save </Button>
+                        <Button variant="contained" size="large" className='modal__saveButton' type='submit'> Save </Button>
                     </form>
                 </div>
             </div>

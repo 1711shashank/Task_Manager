@@ -9,23 +9,15 @@ const TaskProvider = (props) => {
             {
                 id: new Date().getTime(),
                 TaskName: 'Task 1',
-                SubTasks: []
+                SubTasks: [{SubTaskName: "newSubTask", SubTaskStatus: false}]
             }
         ],
         TimeSheet: [
             {
-                id: 55,
-                Date: new Date().toDateString(),
-                TimeSheet: [
-                    { id: 2, Topic: 'Topic Heading 1', Description: 'dsfjh' }
-                ]
-            },
-            {
                 id: 555,
-                Date: new Date().toDateString(),
-                TimeSheet: [
-                    { id: 1, Topic: 'Topic Heading 1', Description: 'Description wrjkhfuiklmscd iowerj wkefewf wef' },
-                    { id: 2, Topic: 'Topic Heading 2', Description: 'Descripsdlkfjstion' }
+                Date: '2023-02-26',
+                Activity: [
+                    { id: 1, Topic: 'Add your Daily Activity Here', Description: 'Description' }
                 ]
             }
         ]

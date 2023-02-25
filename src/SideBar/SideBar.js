@@ -30,7 +30,7 @@ const SideBar = () => {
                             <div className='timeLine__containerDown'>
                                 <div className='timeLine__day'>
                                     <ol className='timeLine__dayItems'>
-                                        {item1.TimeSheet.map((item2) => (
+                                        {item1.Activity.map((item2) => (
                                             <li className='timeLine__dayItem' key={item2.id}>
                                                 <h2>{item2.Topic}</h2>
                                                 <p> {item2.Description} </p>
