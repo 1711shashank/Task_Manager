@@ -1,5 +1,6 @@
 import { Button } from '@mui/material';
 import axios from "axios";
+import uniqid from 'uniqid';
 import React, { useEffect, useState } from 'react'
 
 const AddActivityModal = ({ fetchData, closeModal }) => {
@@ -13,13 +14,12 @@ const AddActivityModal = ({ fetchData, closeModal }) => {
 
         const newEntry = {
             Date: date,
-            Activity: { Topic: topic, Description: description }
+            Activity: { id: uniqid(), Topic: topic, Description: description }
         }
 
         axios
           .post(`http://localhost:5000/addActivity`, {newEntry:newEntry})
           .then((res) => {
-            console.log(res);
               fetchData();
           })
           .catch((err) => {

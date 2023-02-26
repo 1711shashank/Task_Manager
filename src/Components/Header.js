@@ -38,7 +38,6 @@ const Header = () => {
 
         axios.post(`http://localhost:5000/addTask`,{newEntry: newEntry})
             .then((res) => {
-                console.log(res.data);
             })
             .catch((err) => {
                 alert("Server error!");
