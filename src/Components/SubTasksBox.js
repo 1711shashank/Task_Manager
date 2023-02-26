@@ -1,27 +1,47 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import './SubTasksBox.css'
 
-const SubTasksBox = () => {
+const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
 
-    const [subTasks, setSubTasks] = useState([]);
     const [newSubTask, setNewSubTask] = useState('');
+
 
     const addNewSubTask = (e) => {
         e.preventDefault();
 
-        const newEntry = { id: new Date().getTime(), SubTaskName: newSubTask, SubTaskStatus: false };
+        const newEntry = { SubTaskName: newSubTask, SubTaskStatus: false };
 
-        setSubTasks([...subTasks, newEntry]);
+        axios
+        .post(`http://localhost:5000/addSubTask`, { TaskId: TaskId, SubTask:newEntry})
+        .then((res) => {
+          console.log(res.data);
+            fetchData();
+        })
+        .catch((err) => {
+          alert(err);
+        });
+      
+
+        // setSubTasks([...subTasks, newEntry]);
         setNewSubTask('');
     }
     
-    const removeSubTask = (id) => {
-        const tempArray = subTasks.filter((curEle) => {
-            return curEle.id !== id;
-        });
-        setSubTasks(tempArray);
+    const removeSubTask = (TaskId,SubTaskName,SubTaskStatus) => {
+
+        const subTaskToBeDeleted = {TaskId:TaskId, SubTask:{SubTaskName:SubTaskName,SubTaskStatus:SubTaskStatus}}
+
+        axios.post(`http://localhost:5000/deleteSubTask`,{subTaskToBeDeleted})
+            .then((res) => {
+                console.log(res.data.TaskSheetData);
+                fetchData();
+            })
+            .catch((err) => {
+                alert("Server error!");
+            });
+       
     }
 
     return (
@@ -40,9 +60,9 @@ const SubTasksBox = () => {
                 </form>
 
                 {subTasks.map((subTask) => (
-                    <div className='subtasks__task' key={subTask.id}>
+                    <div className='subtasks__task' key={subTask._id}>
                         <p>{subTask.SubTaskName}</p>
-                        <DeleteOutlineIcon onClick={() => removeSubTask(subTask.id)} />
+                        <DeleteOutlineIcon onClick={() => removeSubTask(TaskId, subTask.SubTaskName, subTask.SubTaskStatus)} />
                     </div>
                 ))}
             </div>

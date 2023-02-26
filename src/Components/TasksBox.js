@@ -1,31 +1,51 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import './TasksBox.css'
-import TaskContext from '../Context/TaskContext'
 import SubTasksBox from './SubTasksBox'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import axios from 'axios';
 
 
 const TasksBox = () => {
 
-    const taskSheet = useContext(TaskContext);
+    const [taskSheet, setTaskSheet] = useState([]);
 
-    const removeTask = (id) => {
-        const tempArray = taskSheet.tasks.filter((curEle) => {
-            return curEle.id !== id;
-        });
-        taskSheet.updateTaskList(tempArray);
+
+    const fetchData = () => {
+        axios.get(`http://localhost:5000/getTask`)
+            .then((res) => {
+                console.log(res.data.TaskSheetData);
+                setTaskSheet(res.data.TaskSheetData);
+            })
+            .catch((err) => {
+                alert("Server error!");
+            });
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    const removeTask = (_id) => {
+        axios.post(`http://localhost:5000/deleteTask`,{_id})
+            .then((res) => {
+                console.log(res.data.TaskSheetData);
+                fetchData();
+            })
+            .catch((err) => {
+                alert("Server error!");
+            });
     }
 
     return (
         <>
-            {taskSheet.tasks.map((item) => (
-                <div className='task' key={item.id}>
+            {taskSheet.map((item) => (
+                <div className='task' key={item._id}>
                     <div className='task__header'>
                         <p className='task__name'> {item.TaskName}</p>
-                        <DeleteOutlineIcon onClick={() => removeTask(item.id)} />
+                        <DeleteOutlineIcon onClick={() => removeTask(item._id)} />
                     </div>
                     <div className='task__subtask'>
-                        <SubTasksBox />
+                        <SubTasksBox  TaskId={item._id} subTasks={item.SubTasks} fetchData={fetchData}/>
                     </div>
                 </div>
             ))}

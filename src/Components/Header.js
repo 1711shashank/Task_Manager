@@ -38,8 +38,15 @@ const Header = () => {
     const taskSheet = useContext(TaskContext);
 
     const addTask = () => {
-        const newEntry = { id: new Date().getTime(), TaskName: 'New Task', SubTasks: [] };
-        taskSheet.addNewTask(newEntry);
+        const newEntry = { TaskName: 'New Task', SubTasks: [] };        
+
+        axios.post(`http://localhost:5000/addTask`,{newEntry: newEntry})
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => {
+                alert("Server error!");
+            });
     }
 
     return (

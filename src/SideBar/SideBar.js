@@ -10,6 +10,8 @@ import axios from 'axios';
 const SideBar = () => {
 
     const [timeSheet, setTimeSheet] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+
 
     const fetchData = () => {
         axios.get(`http://localhost:5000/getActivity`)
@@ -26,9 +28,6 @@ const SideBar = () => {
         fetchData();
     }, [])
 
-    console.log(timeSheet);
-
-    const [showModal, setShowModal] = useState(false);
 
     return (
         <>

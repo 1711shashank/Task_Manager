@@ -1,7 +1,6 @@
 import { Button } from '@mui/material';
 import axios from "axios";
-import React, { useContext, useEffect, useState } from 'react'
-import TaskContext from '../Context/TaskContext';
+import React, { useEffect, useState } from 'react'
 
 const AddActivityModal = ({ fetchData, closeModal }) => {
 
@@ -27,7 +26,6 @@ const AddActivityModal = ({ fetchData, closeModal }) => {
             alert("Server error!");
           });
         
-
           closeModal();
 
     };
