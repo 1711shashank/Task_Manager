@@ -1,33 +1,36 @@
 import { Button } from '@mui/material';
+import axios from "axios";
 import React, { useContext, useEffect, useState } from 'react'
 import TaskContext from '../Context/TaskContext';
 
-const AddActivityModal = ({ closeModal }) => {
+const AddActivityModal = ({ fetchData, closeModal }) => {
 
     const [topic, setTopic] = useState('');
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
 
-    const timeSheet = useContext(TaskContext);
-    console.log(timeSheet.dailyActivities);
+    const addActivity = (e) => {
+        e.preventDefault();
 
-    const addActivity = () => {
         const newEntry = {
-            id: new Date().getTime(),
             Date: '2023-02-25',
-            Activity: [{ id: new Date().getTime(), Topic: topic, Description: description }]
-        };
+            Activity: { Topic: topic, Description: description }
+        }
 
-        let tempArray = timeSheet.dailyActivities.filter((curEle) => {
-            return curEle.Date === date;
-        });
-        if(tempArray.length)
-            tempArray[0].Activity.push(newEntry.Activity[0]);
-        else
-            timeSheet.addNewActivity(newEntry);
+        axios
+          .post(`http://localhost:5000/addActivity`, {newEntry:newEntry})
+          .then((res) => {
+            console.log(res);
+              fetchData();
+          })
+          .catch((err) => {
+            alert("Server error!");
+          });
+        
 
-        closeModal();
-    }
+          closeModal();
+
+    };
 
     useEffect(()=>{
         document.body.style.overflowY = 'hidden';
