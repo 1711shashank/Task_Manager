@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import uniqid from 'uniqid';
+import FlipMove from 'react-flip-move';
+
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import './SubTasksBox.css'
@@ -64,6 +66,7 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
                         required
                     />
                 </form>
+                <FlipMove>
 
                 {subTasks.map((subTask) => (
                     <div className='subtasks__task' key={subTask.SubTaskId}>
@@ -71,6 +74,7 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
                         <DeleteOutlineIcon onClick={() => removeSubTask(TaskId, subTask.SubTaskId)} />
                     </div>
                 ))}
+                </FlipMove>
             </div>
         </>
     )
