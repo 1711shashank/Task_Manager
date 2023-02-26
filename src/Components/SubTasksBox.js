@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
+import uniqid from 'uniqid';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import './SubTasksBox.css'
@@ -14,7 +15,9 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
     const addNewSubTask = (e) => {
         e.preventDefault();
 
-        const newEntry = { SubTaskId: (Math.floor(Math.random() * 1e20+7)).toString(), SubTaskName: newSubTask, SubTaskStatus: false };
+        console.log(uniqid());
+
+        const newEntry = { SubTaskId: uniqid(), SubTaskName: newSubTask, SubTaskStatus: false };
 
         axios
         .post(`http://localhost:5000/addSubTask`, { TaskId: TaskId, SubTask:newEntry})
@@ -63,7 +66,7 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
                 </form>
 
                 {subTasks.map((subTask) => (
-                    <div className='subtasks__task' key={subTask.SubTaskid}>
+                    <div className='subtasks__task' key={subTask.SubTaskId}>
                         <p>{subTask.SubTaskName}</p>
                         <DeleteOutlineIcon onClick={() => removeSubTask(TaskId, subTask.SubTaskId)} />
                     </div>
