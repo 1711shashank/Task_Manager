@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useGoogleLogin, googleLogout } from '@react-oauth/google';
-import TaskContext from '../Context/TaskContext';
 import { Button } from '@mui/material'
 import axios from 'axios';
 import './Header.css'
@@ -33,9 +32,6 @@ const Header = () => {
         }
     }, [user]);
 
-
-
-    const taskSheet = useContext(TaskContext);
 
     const addTask = () => {
         const newEntry = { TaskName: 'New Task', SubTasks: [] };        

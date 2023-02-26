@@ -6,13 +6,15 @@ import './SubTasksBox.css'
 
 const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
 
+    console.log(subTasks);
+
     const [newSubTask, setNewSubTask] = useState('');
 
 
     const addNewSubTask = (e) => {
         e.preventDefault();
 
-        const newEntry = { SubTaskName: newSubTask, SubTaskStatus: false };
+        const newEntry = { SubTaskId: (Math.floor(Math.random() * 1e20+7)).toString(), SubTaskName: newSubTask, SubTaskStatus: false };
 
         axios
         .post(`http://localhost:5000/addSubTask`, { TaskId: TaskId, SubTask:newEntry})
@@ -24,24 +26,25 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
           alert(err);
         });
       
-
-        // setSubTasks([...subTasks, newEntry]);
         setNewSubTask('');
     }
     
-    const removeSubTask = (TaskId,SubTaskName,SubTaskStatus) => {
+    const removeSubTask = (TaskId,SubTaskId) => {
+        console.log(SubTaskId)
 
-        const subTaskToBeDeleted = {TaskId:TaskId, SubTask:{SubTaskName:SubTaskName,SubTaskStatus:SubTaskStatus}}
+
+        const subTaskToBeDeleted = {TaskId:TaskId, SubTaskId}
+
+        console.log(subTaskToBeDeleted);
 
         axios.post(`http://localhost:5000/deleteSubTask`,{subTaskToBeDeleted})
             .then((res) => {
-                console.log(res.data.TaskSheetData);
+                console.log(res.data);
                 fetchData();
             })
             .catch((err) => {
                 alert("Server error!");
             });
-       
     }
 
     return (
@@ -60,9 +63,9 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
                 </form>
 
                 {subTasks.map((subTask) => (
-                    <div className='subtasks__task' key={subTask._id}>
+                    <div className='subtasks__task' key={subTask.SubTaskid}>
                         <p>{subTask.SubTaskName}</p>
-                        <DeleteOutlineIcon onClick={() => removeSubTask(TaskId, subTask.SubTaskName, subTask.SubTaskStatus)} />
+                        <DeleteOutlineIcon onClick={() => removeSubTask(TaskId, subTask.SubTaskId)} />
                     </div>
                 ))}
             </div>

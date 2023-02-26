@@ -12,7 +12,7 @@ const AddActivityModal = ({ fetchData, closeModal }) => {
         e.preventDefault();
 
         const newEntry = {
-            Date: '2023-02-25',
+            Date: date,
             Activity: { Topic: topic, Description: description }
         }
 

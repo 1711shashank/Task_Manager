@@ -9,11 +9,9 @@ const TasksBox = () => {
 
     const [taskSheet, setTaskSheet] = useState([]);
 
-
     const fetchData = () => {
         axios.get(`http://localhost:5000/getTask`)
             .then((res) => {
-                console.log(res.data.TaskSheetData);
                 setTaskSheet(res.data.TaskSheetData);
             })
             .catch((err) => {
@@ -28,7 +26,6 @@ const TasksBox = () => {
     const removeTask = (_id) => {
         axios.post(`http://localhost:5000/deleteTask`,{_id})
             .then((res) => {
-                console.log(res.data.TaskSheetData);
                 fetchData();
             })
             .catch((err) => {
