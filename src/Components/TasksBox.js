@@ -12,10 +12,10 @@ const TasksBox = () => {
 
     const [taskSheet, setTaskSheet] = useState([]);
     const [open, setOpen] = React.useState(false);
-    const [taskId, setTaskId] = useState('');
+    const [deleteTaskId, setDeleteTaskId] = useState('');
 
     const handleClickOpen = (id) => {
-        setTaskId(id);
+        setDeleteTaskId(id);
         setOpen(true);
     };
 
@@ -23,7 +23,7 @@ const TasksBox = () => {
         setOpen(false);
     };
     const handleCloseOnDelete = () => {
-        removeTask(taskId);
+        removeTask(deleteTaskId);
         setOpen(false);
     };
 

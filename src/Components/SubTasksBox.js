@@ -4,10 +4,30 @@ import uniqid from 'uniqid';
 import FlipMove from 'react-flip-move';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import './SubTasksBox.css'
+import { Dialog } from '@mui/material';
+import DeletePopUp from './DeletePopUp';
 
 const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
 
     const [newSubTask, setNewSubTask] = useState('');
+    const [open, setOpen] = React.useState(false);
+    const [deleteTaskId, setDeleteTaskId] = useState('');
+    const [deleteSubTaskId, setDeleteSubTaskId] = useState('');
+
+    const handleClickOpen = (taskId, subTaskId) => {
+        setDeleteTaskId(taskId);
+        setDeleteSubTaskId(subTaskId);
+        setOpen(true);
+    };
+
+    const handleCloseOnCancel = () => {
+        setOpen(false);
+    };
+    const handleCloseOnDelete = () => {
+        removeSubTask(deleteTaskId, deleteSubTaskId);
+        setOpen(false);
+    };
+
 
     const addNewSubTask = (e) => {
         e.preventDefault();
@@ -59,11 +79,19 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
                     {subTasks.map((subTask) => (
                         <div className='subtasks__task' key={subTask.SubTaskId}>
                             <p>{subTask.SubTaskName}</p>
-                            <DeleteOutlineIcon onClick={() => removeSubTask(TaskId, subTask.SubTaskId)} />
+                            {/* <DeleteOutlineIcon onClick={() => removeSubTask(TaskId, subTask.SubTaskId)} /> */}
+                            <DeleteOutlineIcon onClick={() => handleClickOpen(TaskId, subTask.SubTaskId)} />
                         </div>
                     ))}
                 {/* </FlipMove> */}
+
+                <Dialog
+                open={open}
+                onClose={handleCloseOnCancel}>
+                <DeletePopUp handleCloseOnCancel={handleCloseOnCancel} handleCloseOnDelete={handleCloseOnDelete} />
+            </Dialog>
             </div>
+
         </>
     )
 }
