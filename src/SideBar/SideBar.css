@@ -158,3 +158,6 @@
 .modal__saveButton {
     width: 2rem;
 }
+.modal__buttons > Button {
+    margin: 1rem;
+}
