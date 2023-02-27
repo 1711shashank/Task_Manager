@@ -9,7 +9,7 @@ const DeletePopUp = ({ handleCloseOnCancel, handleCloseOnDelete}) => {
     return (
         <div>
             <DialogTitle id="responsive-dialog-title">
-                Are you sure to delete this Task?
+                Are you sure you want to delete this item? This action cannot be undone.
             </DialogTitle>
             
             <DialogActions>
