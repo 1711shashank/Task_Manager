@@ -54,7 +54,7 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
                         required
                     />
                 </form>
-                <FlipMove>
+                {/* <FlipMove> */}
 
                     {subTasks.map((subTask) => (
                         <div className='subtasks__task' key={subTask.SubTaskId}>
@@ -62,7 +62,7 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
                             <DeleteOutlineIcon onClick={() => removeSubTask(TaskId, subTask.SubTaskId)} />
                         </div>
                     ))}
-                </FlipMove>
+                {/* </FlipMove> */}
             </div>
         </>
     )
