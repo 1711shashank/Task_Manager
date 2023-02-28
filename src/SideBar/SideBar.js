@@ -7,19 +7,17 @@ import AddActivityModal from './AddActivityModal';
 import moment from 'moment';
 import axios from 'axios';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import DeletePopUp from '../Components/DeletePopUp';
+import PopUpMenu from '../Context/PopUpMenu';
 
 
 const SideBar = () => {
 
-    const menuListItems = ['Edit', 'Delete'];
     const ITEM_HEIGHT = 48;
 
     const [timeSheet, setTimeSheet] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [openModal, setopenModal] = useState(false);
-    const [activityArrayId, setActivityArrayId] = useState('');
-    const [activityId, setActivityId] = useState('');
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
@@ -41,32 +39,11 @@ const SideBar = () => {
         setAnchorEl(event.currentTarget);
     };
 
-    const openMenu = (menuListItem, id1, id2) => {
-        if (menuListItem === 'Edit') {
-            console.log(menuListItem);
-        }
-        else if (menuListItem === 'Delete') {
-            handleClickOpenModal(id1, id2);
-        }
-        closeMenu();
-    }
-
-    const handleClickOpenModal = (id1, id2) => {
-        setActivityArrayId(id1);
-        setActivityId(id2);
-        setopenModal(true);
-    };
-
-    const handleCloseOnCancel = () => {
+    const handleCloseOnDelete = ({ activityArrayId, activityId }) => {
+        console.log("handleCloseOnDelete", activityArrayId, activityId)
+        deleteActivity(activityArrayId, activityId, activityId);
         setopenModal(false);
         closeMenu();
-
-    };
-    const handleCloseOnDelete = () => {
-        deleteActivity(activityArrayId, activityId);
-        setopenModal(false);
-        closeMenu();
-
     };
 
     const closeMenu = () => {
@@ -128,18 +105,9 @@ const SideBar = () => {
                                                             },
                                                         }}
                                                     >
-                                                        {menuListItems.map((menuListItem) => (
-                                                            <MenuItem key={menuListItem} onClick={() => openMenu(menuListItem, item1._id, item2.id)}>
-                                                                {menuListItem}
-                                                            </MenuItem>
-                                                        ))}
-                                                    </Menu>
-                                                    <Dialog
-                                                        open={openModal}
-                                                        onClose={handleCloseOnCancel}>
-                                                        <DeletePopUp handleCloseOnCancel={handleCloseOnCancel} handleCloseOnDelete={handleCloseOnDelete} />
-                                                    </Dialog>
+                                                        <PopUpMenu id1={item1._id} id2={item2.id} handleCloseOnDelete={handleCloseOnDelete} />
 
+                                                    </Menu>
                                                 </div>
                                                 <div className='timeLine__dayItemDescription'>
                                                     <p> {item2.Description} </p>
