@@ -1,33 +1,20 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import uniqid from 'uniqid';
-// import FlipMove from 'react-flip-move';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { Button, Dialog, IconButton, Menu, MenuItem } from '@mui/material';
 import './SubTasksBox.css'
-import { Dialog } from '@mui/material';
-import DeletePopUp from './DeletePopUp';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import PopUpMenu from '../Context/PopUpMenu';
+
+
 
 const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
+    const ITEM_HEIGHT = 48;
 
     const [newSubTask, setNewSubTask] = useState('');
-    const [openModal, setopenModal] = useState(false);
-    const [deleteTaskId, setDeleteTaskId] = useState('');
-    const [deleteSubTaskId, setDeleteSubTaskId] = useState('');
 
-    const handleClickOpenModal = (taskId, subTaskId) => {
-        setDeleteTaskId(taskId);
-        setDeleteSubTaskId(subTaskId);
-        setopenModal(true);
-    };
-
-    const handleCloseOnCancel = () => {
-        setopenModal(false);
-    };
-    
-    const handleCloseOnDelete = () => {
-        removeSubTask(deleteTaskId, deleteSubTaskId);
-        setopenModal(false);
-    };
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
 
     const addNewSubTask = (e) => {
         e.preventDefault();
@@ -46,7 +33,21 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
         setNewSubTask('');
     }
 
-    const removeSubTask = (TaskId, SubTaskId) => {
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleCloseOnDelete = ({ activityArrayId, activityId }) => {
+        console.log("handleCloseOnDelete", activityArrayId, activityId)
+        deleteActivity(activityArrayId, activityId, activityId);
+        closeMenu();
+    };
+
+    const closeMenu = () => {
+        setAnchorEl(null);
+    };
+
+    const deleteActivity = (TaskId, SubTaskId) => {
 
         const subTaskToBeDeleted = { TaskId: TaskId, SubTaskId }
 
@@ -74,22 +75,35 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
                         required
                     />
                 </form>
-                {/* <FlipMove> */}
 
                 {subTasks.map((subTask) => (
                     <div className='subtasks__task' key={subTask.SubTaskId}>
                         <p>{subTask.SubTaskName}</p>
-                        {/* <DeleteOutlineIcon onClick={() => removeSubTask(TaskId, subTask.SubTaskId)} /> */}
-                        <DeleteOutlineIcon onClick={() => handleClickOpenModal(TaskId, subTask.SubTaskId)} />
+                        <IconButton
+                            aria-label="more"
+                            id="long-button"
+                            aria-controls={open ? 'long-menu' : undefined}
+                            aria-expanded={open ? 'true' : undefined}
+                            aria-haspopup="true"
+                            onClick={handleClick}
+                        >
+                            <MoreVertIcon />
+                        </IconButton>
+                        <Menu
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={closeMenu}
+                            PaperProps={{
+                                style: {
+                                    maxHeight: ITEM_HEIGHT * 5.5,
+                                    width: '20ch',
+                                },
+                            }}
+                        >
+                            <PopUpMenu id1={TaskId} id2={subTask.SubTaskId} handleCloseOnDelete={handleCloseOnDelete} />
+                        </Menu>
                     </div>
                 ))}
-                {/* </FlipMove> */}
-
-                <Dialog
-                    open={openModal}
-                    onClose={handleCloseOnCancel}>
-                    <DeletePopUp handleCloseOnCancel={handleCloseOnCancel} handleCloseOnDelete={handleCloseOnDelete} />
-                </Dialog>
             </div>
 
         </>

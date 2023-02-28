@@ -16,7 +16,6 @@ const SideBar = () => {
 
     const [timeSheet, setTimeSheet] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [openModal, setopenModal] = useState(false);
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -42,7 +41,6 @@ const SideBar = () => {
     const handleCloseOnDelete = ({ activityArrayId, activityId }) => {
         console.log("handleCloseOnDelete", activityArrayId, activityId)
         deleteActivity(activityArrayId, activityId, activityId);
-        setopenModal(false);
         closeMenu();
     };
 
