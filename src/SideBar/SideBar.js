@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import CommitIcon from '@mui/icons-material/Commit';
 import './SideBar.css'
-import { Button, Dialog, IconButton, Menu, MenuItem } from '@mui/material';
+import { Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import AddActivityModal from './AddActivityModal';
 import moment from 'moment';
 import axios from 'axios';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import PopUpMenu from '../Context/PopUpMenu';
+import PopUpMenu from '../Modal/PopUpMenu';
 
 
 const SideBar = () => {
 
-    const ITEM_HEIGHT = 48;
 
     const [timeSheet, setTimeSheet] = useState([]);
     const [showModal, setShowModal] = useState(false);
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
+
+    useEffect(() => {
+        fetchData();
+    }, [])
 
     const fetchData = () => {
         axios.get(`http://localhost:5000/getActivity`)
@@ -30,24 +30,6 @@ const SideBar = () => {
             });
     }
 
-    useEffect(() => {
-        fetchData();
-    }, [])
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleCloseOnDelete = ({ activityArrayId, activityId }) => {
-        console.log("handleCloseOnDelete", activityArrayId, activityId)
-        deleteActivity(activityArrayId, activityId, activityId);
-        closeMenu();
-    };
-
-    const closeMenu = () => {
-        setAnchorEl(null);
-    };
-
     const deleteActivity = (id1, id2) => {
         axios.post(`http://localhost:5000/deleteActivity`, { _id: id1, id: id2 })
             .then((res) => {
@@ -58,7 +40,6 @@ const SideBar = () => {
                 alert("Server error!");
             });
     }
-
 
 
     return (
@@ -82,30 +63,7 @@ const SideBar = () => {
                                             <li className='timeLine__dayItem' key={item2.id}>
                                                 <div className='timeLine__dayItemHead'>
                                                     <h2>{item2.Topic}</h2>
-                                                    <IconButton
-                                                        aria-label="more"
-                                                        id="long-button"
-                                                        aria-controls={open ? 'long-menu' : undefined}
-                                                        aria-expanded={open ? 'true' : undefined}
-                                                        aria-haspopup="true"
-                                                        onClick={handleClick}
-                                                    >
-                                                        <MoreVertIcon />
-                                                    </IconButton>
-                                                    <Menu
-                                                        anchorEl={anchorEl}
-                                                        open={open}
-                                                        onClose={closeMenu}
-                                                        PaperProps={{
-                                                            style: {
-                                                                maxHeight: ITEM_HEIGHT * 5.5,
-                                                                width: '20ch',
-                                                            },
-                                                        }}
-                                                    >
-                                                        <PopUpMenu id1={item1._id} id2={item2.id} handleCloseOnDelete={handleCloseOnDelete} />
-
-                                                    </Menu>
+                                                        <PopUpMenu id1={item1._id} id2={item2.id} deleteFunction={deleteActivity} />
                                                 </div>
                                                 <div className='timeLine__dayItemDescription'>
                                                     <p> {item2.Description} </p>

@@ -5,12 +5,13 @@ import axios from 'axios';
 import PopUpMenu from '../Modal/PopUpMenu';
 
 
-
-
-
 const TasksBox = () => {
 
     const [taskSheet, setTaskSheet] = useState([]);
+
+    useEffect(() => {
+        fetchData();
+    }, [])
 
     const fetchData = () => {
         axios.get(`http://localhost:5000/getTask`)
@@ -21,10 +22,6 @@ const TasksBox = () => {
                 alert("Server error!");
             });
     }
-
-    useEffect(() => {
-        fetchData();
-    }, [])
 
     const deleteTask = (_id) => {
         axios.post(`http://localhost:5000/deleteTask`, { _id })
