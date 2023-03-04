@@ -6,32 +6,45 @@ import '@szhsin/react-menu/dist/transitions/slide.css';
 
 import Dialog from '@mui/material/Dialog';
 import PopUpDelete from './PopUpDelete';
+import PopUpEdit from './PopUpEdit';
 
-const PopUpMenu = ({ id1, id2, deleteFunction }) => {
+const PopUpMenu = ({ id1, id2, editFunction, deleteFunction }) => {
 
-    const [open, setOpen] = useState(false);
+    const [deleteModal, setDeleteModal] = useState(false);
+    const [editModal, setEditModal] = useState(false);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
 
     const handleCloseOnCancel = () => {
-        setOpen(false);
+        setDeleteModal(false);
+        setEditModal(false);
+    };
+
+    const handleCloseOnSave = () => {
+        console.log('edit')
+        setDeleteModal(false);
+        editFunction(id1, id2);
     };
     const handleCloseOnDelete = () => {
-        setOpen(false);
-        deleteFunction(id1,id2);
+        console.log('delete')
+        setDeleteModal(false);
+        deleteFunction(id1, id2);
     };
 
     return (
         <>
             <Menu menuButton={<MoreVertIcon />} transition>
-                <MenuItem>Edit </MenuItem>
-                <MenuItem onClick={ handleClickOpen }> Delete </MenuItem>
+                <MenuItem onClick={() => setEditModal(true)}> Edit </MenuItem>
+                <MenuItem onClick={() => setDeleteModal(true)}> Delete </MenuItem>
             </Menu>
 
             <Dialog
-                open={open}
+                open={editModal}
+                onClose={handleCloseOnCancel}>
+                <PopUpEdit handleCloseOnCancel={handleCloseOnCancel} handleCloseOnSave={handleCloseOnSave} />
+            </Dialog>
+            
+            <Dialog
+                open={deleteModal}
                 onClose={handleCloseOnCancel}>
                 <PopUpDelete handleCloseOnCancel={handleCloseOnCancel} handleCloseOnDelete={handleCloseOnDelete} />
             </Dialog>

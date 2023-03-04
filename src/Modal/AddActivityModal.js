@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import uniqid from 'uniqid';
 import axios from "axios";
 
@@ -18,24 +18,24 @@ const AddActivityModal = ({ fetchData, closeModal }) => {
         }
 
         axios
-          .post(`http://localhost:5000/addActivity`, {newEntry:newEntry})
-          .then((res) => {
-              fetchData();
-          })
-          .catch((err) => {
-            alert("Server error!");
-          });
-        
-          closeModal();
+            .post(`http://localhost:5000/addActivity`, { newEntry: newEntry })
+            .then((res) => {
+                fetchData();
+            })
+            .catch((err) => {
+                alert("Server error!");
+            });
+
+        closeModal();
 
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         document.body.style.overflowY = 'hidden';
         return () => {
             document.body.style.overflowY = 'scroll';
         };
-    },[])
+    }, [])
 
 
     return (
@@ -45,14 +45,17 @@ const AddActivityModal = ({ fetchData, closeModal }) => {
             <div className='modal__container'>
                 <div className='modal'>
                     <h1 className='modal__heading'>Add Today's Activity</h1>
-                    
+
                     <form className='modal__form' onSubmit={addActivity}>
-                        <input className='modal__inputBoxTopic' placeholder='Topic' type='text' onChange={(e) => setTopic(e.target.value)} required></input>
-                        <input className='modal__inputBoxTopic' placeholder='Topic' type='date' onChange={(e) => setDate(e.target.value)} required></input>
-                        <textarea className='modal__inputBoxDescription' placeholder='Description' onChange={(e) => setDescription(e.target.value)}></textarea>
+
+                        <div>
+                            <TextField id="outlined-required" className='modal__inputBoxTopic' required label="Topic" onChange={(e) => setTopic(e.target.value)} />
+                      </div><div> <TextField id="outlined-required" className='modal__inputBoxTopic' equired type='date' onChange={(e) => setDate(e.target.value)} />
+                        </div>
+                        <div> <TextField id="outlined-multiline-static" className='modal__inputBoxDescription' onChange={(e) => setDescription(e.target.value)} label="Description" multiline rows={6} /></div>
                         <div className='modal__buttons'>
-                        <Button variant="outlined" size="large" className='modal__saveButton' onClick={()=>{closeModal()}}> Cancel </Button>
-                        <Button variant="contained" size="large" className='modal__saveButton' type='submit'> Save </Button>
+                            <Button variant="outlined" size="large" className='modal__saveButton' onClick={() => { closeModal() }}> Cancel </Button>
+                            <Button variant="contained" size="large" className='modal__saveButton' type='submit'> Save </Button>
                         </div>
                     </form>
                 </div>

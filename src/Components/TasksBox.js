@@ -23,6 +23,10 @@ const TasksBox = () => {
             });
     }
 
+    const editTaskName = () => {
+        console.log('editTaskName function called');
+    }
+
     const deleteTask = (_id) => {
         axios.post(`http://localhost:5000/deleteTask`, { _id })
             .then((res) => {
@@ -33,13 +37,15 @@ const TasksBox = () => {
             });
     }
 
+
+
     return (
         <>
             {taskSheet.map((item) => (
                 <div className='task' key={item._id}>
                     <div className='task__header'>
                         <p className='task__name'> {item.TaskName}</p>
-                            <PopUpMenu id1={item._id} deleteFunction={deleteTask}/>
+                            <PopUpMenu id1={item._id} editFunction={ editTaskName } deleteFunction={deleteTask}/>
                     </div>
 
                     <div className='task__subtask'>

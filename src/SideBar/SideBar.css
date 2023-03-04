@@ -124,46 +124,25 @@
 
 .modal__heading {
     font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
 }
 
-.modal__form {
+.modal__form > *{
+    margin: 1.5rem;
+}
+
+
+
+.modal__inputBoxDescription, .modal__inputBoxTopic {
+    width: 100%;
+}
+
+.modal__buttons {
+    margin-top: 3rem;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-evenly;
 }
-
-.modal__inputBoxTopic {
-    margin: 1rem;
-    padding: 1rem;
-    width: 100%;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    background-color: #E2E8F0;
-
-
-}
-
-.modal__inputBoxDescription {
-    margin: 1rem;
-    padding: 1rem;
-    height: 15vh;
-    width: 100%;
-    resize: none;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    background-color: #E2E8F0;
-}
-
-.modal__inputBoxTopic:focus,
-.modal__inputBoxDescription:focus {
-    outline: none;
-}
-
-.modal__saveButton {
-    width: 2rem;
-}
-.modal__buttons > Button {
-    margin: 1rem;
+.modal__buttons > *{
+    width: 30%;
 }

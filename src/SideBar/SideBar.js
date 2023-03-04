@@ -3,7 +3,7 @@ import CommitIcon from '@mui/icons-material/Commit';
 import './SideBar.css'
 import { Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import AddActivityModal from './AddActivityModal';
+import AddActivityModal from '../Modal/AddActivityModal';
 import moment from 'moment';
 import axios from 'axios';
 import PopUpMenu from '../Modal/PopUpMenu';
