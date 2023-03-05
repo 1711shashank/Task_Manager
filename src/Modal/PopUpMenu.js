@@ -8,8 +8,9 @@ import Dialog from '@mui/material/Dialog';
 import DeleteModal from './DeleteModal';
 import EditTaskModal from './EditTaskModal';
 import EditActivityModal from './EditActivityModal';
+import EditSubTaskModal from './EditSubTaskModal';
 
-const PopUpMenu = ({ id1, id2, editFunction, deleteFunction, modalName }) => {
+const PopUpMenu = ({ id1, id2, deleteFunction, modalName }) => {
 
     const [deleteModal, setDeleteModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
@@ -20,14 +21,7 @@ const PopUpMenu = ({ id1, id2, editFunction, deleteFunction, modalName }) => {
         setEditModal(false);
     };
 
-    const handleCloseOnSave = () => {
-        console.log('edit')
-        setDeleteModal(false);
-        editFunction(id1, id2);
-    };
     const handleCloseOnDelete = () => {
-
-
         console.log('delete', id1, id2)
         setDeleteModal(false);
         deleteFunction(id1, id2);
@@ -41,11 +35,11 @@ const PopUpMenu = ({ id1, id2, editFunction, deleteFunction, modalName }) => {
             </Menu>
 
             <Dialog open={editModal} onClose={handleCloseOnCancel}>
-                {
-                    modalName === "Edit_ActivityModal"
-                        ? <EditActivityModal id1={id1} id2={id2} handleCloseOnCancel={handleCloseOnCancel} handleCloseOnSave={handleCloseOnSave} />
-                        : <EditTaskModal handleCloseOnCancel={handleCloseOnCancel} handleCloseOnSave={handleCloseOnSave} />
-                }
+                
+                    {modalName === "Edit_ActivityModal" ? <EditActivityModal id1={id1} id2={id2} handleCloseOnCancel={handleCloseOnCancel}  /> : null }
+                    {modalName === "Edit_SubTaskModal" ? <EditSubTaskModal taskId={id1} subTaskId={id2} handleCloseOnCancel={handleCloseOnCancel} /> : null }
+                    {modalName === "Edit_TaskModal" ? <EditTaskModal taskId={id1} handleCloseOnCancel={handleCloseOnCancel} /> : null }
+                
             </Dialog>
 
             <Dialog

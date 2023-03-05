@@ -69,9 +69,7 @@ const SideBar = () => {
                                                 </div>
                                                 <div className='timeLine__dayItemDescription'>
                                                     <p> {item2.Description} </p>
-
                                                 </div>
-
                                             </li>
                                         ))}
                                     </ol>

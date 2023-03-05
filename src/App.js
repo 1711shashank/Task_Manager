@@ -1,16 +1,16 @@
 import './App.css';
 import Header from './Components/Header';
 import Body from './Components/Body';
-import TaskProvider from './Context/TaskProvider';
+import DataProvider from './Context/DataProvider';
 
 function App() {
   return (
     <>
       <div className="App">
-        <TaskProvider>
+        <DataProvider>
           <Header/>
           <Body/>
-        </TaskProvider>
+        </DataProvider>
       </div>
     </>
   );

@@ -5,19 +5,21 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DataContext from '../Context/DataContext'
 
 
-const EditTaskModal = ({ taskId, subTaskId, handleCloseOnCancel, handleCloseOnSave }) => {
+const EditSubTaskModal = ({ taskId, subTaskId, handleCloseOnCancel }) => {
 
-    const [taskName, setTaskName] = useState('Task Name UseState');
+    const [subTaskName, setSubTaskName] = useState('SubTask Name UseState');
 
     const {taskSheet} = useContext(DataContext);
-    console.log(taskSheet);
+    // console.log(taskSheet);
 
     useEffect(()=>{
 
         const requiredTask = taskSheet.filter( curEle => curEle._id === taskId);
-        setTaskName( requiredTask[0].TaskName );
+        const requiredSubTask = requiredTask[0].SubTasks.filter( curEle => curEle.SubTaskId === subTaskId )
 
-        console.log(requiredTask[0].TaskName);
+        setSubTaskName (requiredSubTask[0].SubTaskName);
+
+        // console.log(requiredSubTask[0].SubTaskName);
 
     },[])
 
@@ -31,14 +33,14 @@ const EditTaskModal = ({ taskId, subTaskId, handleCloseOnCancel, handleCloseOnSa
     return (
         <div>
             <DialogTitle id="responsive-dialog-title">
-                <TextField defaultValue={taskName} onChange={(e) => setTaskName(e.target.value)} id="filled-basic" label="Enter New Value" variant="filled" />
+                <TextField defaultValue={subTaskName} onChange={(e) => setSubTaskName(e.target.value)} id="filled-basic" label="Enter New Value" variant="filled" />
             </DialogTitle>
 
             <DialogActions>
                 <Button onClick={handleCloseOnCancel}>
                     Cancel
                 </Button>
-                <Button onClick={() => UpdateSubTask(taskName)}>
+                <Button onClick={() => UpdateSubTask(subTaskName)}>
                     Save
                 </Button>
             </DialogActions>
@@ -46,4 +48,4 @@ const EditTaskModal = ({ taskId, subTaskId, handleCloseOnCancel, handleCloseOnSa
     );
 }
 
-export default EditTaskModal
+export default EditSubTaskModal

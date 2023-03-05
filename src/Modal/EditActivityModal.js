@@ -4,11 +4,9 @@ import axios from "axios";
 
 const EditActivityModal = ({ id1,id2, handleCloseOnCancel }) => {
 
-    const [topic, setTopic] = useState('');
-    const [date, setDate] = useState('');
-    const [description, setDescription] = useState('');
-    // const [timeSheet, setTimeSheet] = useState([]);
-
+    const [topic, setTopic] = useState('useState');
+    const [date, setDate] = useState('2023-10-10');
+    const [description, setDescription] = useState('useState');
 
 
     useEffect(() => {
@@ -35,8 +33,7 @@ const EditActivityModal = ({ id1,id2, handleCloseOnCancel }) => {
                 setDate(recodesByDate.Date);
                 setDescription(requiredActivity.Description);
 
-                console.log(requiredActivity);
-
+                // console.log(requiredActivity);
 
                 return 'promiss chining';
 
@@ -53,6 +50,8 @@ const EditActivityModal = ({ id1,id2, handleCloseOnCancel }) => {
         e.preventDefault();
         console.log('Inside update activity function');
         console.log("id1",id1,"id2", id2, topic,date,description);
+        handleCloseOnCancel();
+
     }
 
     
