@@ -1,11 +1,12 @@
 import { Button, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 
-const PopUpEdit = ({ handleCloseOnCancel, handleCloseOnSave }) => {
+const EditTaskModal = ({ handleCloseOnCancel, handleCloseOnSave }) => {
 
     const [newValue, setNewValue] = useState('');
+
 
     return (
         <div>
@@ -25,4 +26,4 @@ const PopUpEdit = ({ handleCloseOnCancel, handleCloseOnSave }) => {
     );
 }
 
-export default PopUpEdit
+export default EditTaskModal

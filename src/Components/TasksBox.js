@@ -45,7 +45,7 @@ const TasksBox = () => {
                 <div className='task' key={item._id}>
                     <div className='task__header'>
                         <p className='task__name'> {item.TaskName}</p>
-                            <PopUpMenu id1={item._id} editFunction={ editTaskName } deleteFunction={deleteTask}/>
+                            <PopUpMenu id1={item._id} editFunction={ editTaskName } deleteFunction={deleteTask} modalName="Edit_TaskModal"/>
                     </div>
 
                     <div className='task__subtask'>

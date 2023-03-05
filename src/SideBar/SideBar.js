@@ -4,8 +4,11 @@ import './SideBar.css'
 import { Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import AddActivityModal from '../Modal/AddActivityModal';
+
 import moment from 'moment';
 import axios from 'axios';
+import Dialog from '@mui/material/Dialog';
+
 import PopUpMenu from '../Modal/PopUpMenu';
 
 
@@ -13,7 +16,7 @@ const SideBar = () => {
 
 
     const [timeSheet, setTimeSheet] = useState([]);
-    const [showModal, setShowModal] = useState(false);
+    const [addActivityModal, setAddActivityModal] = useState(false);
 
 
     useEffect(() => {
@@ -44,10 +47,9 @@ const SideBar = () => {
 
     return (
         <>
-
             <div className='timeLine'>
                 <div className='timeLine__header'>
-                    <Button className='timeLine__addButon' variant="outlined" onClick={() => setShowModal(true)} startIcon={<AddIcon />}>Add</Button>
+                    <Button className='timeLine__addButon' variant="outlined" onClick={() => setAddActivityModal(true)} startIcon={<AddIcon />}>Add</Button>
                 </div>
                 <div className='timeLine__body'>
                     {timeSheet.map((item1) => (
@@ -63,7 +65,7 @@ const SideBar = () => {
                                             <li className='timeLine__dayItem' key={item2.id}>
                                                 <div className='timeLine__dayItemHead'>
                                                     <h2>{item2.Topic}</h2>
-                                                        <PopUpMenu id1={item1._id} id2={item2.id} deleteFunction={deleteActivity} />
+                                                    <PopUpMenu id1={item1._id} id2={item2.id} deleteFunction={deleteActivity} modalName="Edit_ActivityModal" />
                                                 </div>
                                                 <div className='timeLine__dayItemDescription'>
                                                     <p> {item2.Description} </p>
@@ -79,8 +81,12 @@ const SideBar = () => {
                     ))}
                 </div>
             </div>
-            {showModal && <AddActivityModal fetchData={fetchData} closeModal={() => setShowModal(false)} />}
 
+            <Dialog
+                open={addActivityModal}
+                onClose={() => setAddActivityModal(false)}>
+                <AddActivityModal fetchData={fetchData} handleCloseOnCancel={() => setAddActivityModal(false)} />
+            </Dialog>
         </>
     )
 }

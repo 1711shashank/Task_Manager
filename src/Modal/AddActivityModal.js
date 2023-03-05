@@ -3,7 +3,7 @@ import { Button, TextField } from '@mui/material';
 import uniqid from 'uniqid';
 import axios from "axios";
 
-const AddActivityModal = ({ fetchData, closeModal }) => {
+const AddActivityModal = ({ fetchData, handleCloseOnCancel }) => {
 
     const [topic, setTopic] = useState('');
     const [date, setDate] = useState('');
@@ -26,8 +26,7 @@ const AddActivityModal = ({ fetchData, closeModal }) => {
                 alert("Server error!");
             });
 
-        closeModal();
-
+        handleCloseOnCancel();
     };
 
     useEffect(() => {
@@ -50,11 +49,11 @@ const AddActivityModal = ({ fetchData, closeModal }) => {
 
                         <div>
                             <TextField id="outlined-required" className='modal__inputBoxTopic' required label="Topic" onChange={(e) => setTopic(e.target.value)} />
-                      </div><div> <TextField id="outlined-required" className='modal__inputBoxTopic' equired type='date' onChange={(e) => setDate(e.target.value)} />
+                        </div><div> <TextField id="outlined-required" className='modal__inputBoxTopic' equired type='date' onChange={(e) => setDate(e.target.value)} />
                         </div>
                         <div> <TextField id="outlined-multiline-static" className='modal__inputBoxDescription' onChange={(e) => setDescription(e.target.value)} label="Description" multiline rows={6} /></div>
                         <div className='modal__buttons'>
-                            <Button variant="outlined" size="large" className='modal__saveButton' onClick={() => { closeModal() }}> Cancel </Button>
+                            <Button variant="outlined" size="large" className='modal__saveButton' onClick={handleCloseOnCancel}> Cancel </Button>
                             <Button variant="contained" size="large" className='modal__saveButton' type='submit'> Save </Button>
                         </div>
                     </form>

@@ -5,10 +5,11 @@ import '@szhsin/react-menu/dist/index.css';
 import '@szhsin/react-menu/dist/transitions/slide.css';
 
 import Dialog from '@mui/material/Dialog';
-import PopUpDelete from './PopUpDelete';
-import PopUpEdit from './PopUpEdit';
+import DeleteModal from './DeleteModal';
+import EditTaskModal from './EditTaskModal';
+import EditActivityModal from './EditActivityModal';
 
-const PopUpMenu = ({ id1, id2, editFunction, deleteFunction }) => {
+const PopUpMenu = ({ id1, id2, editFunction, deleteFunction, modalName }) => {
 
     const [deleteModal, setDeleteModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
@@ -25,7 +26,9 @@ const PopUpMenu = ({ id1, id2, editFunction, deleteFunction }) => {
         editFunction(id1, id2);
     };
     const handleCloseOnDelete = () => {
-        console.log('delete')
+
+
+        console.log('delete', id1, id2)
         setDeleteModal(false);
         deleteFunction(id1, id2);
     };
@@ -37,16 +40,18 @@ const PopUpMenu = ({ id1, id2, editFunction, deleteFunction }) => {
                 <MenuItem onClick={() => setDeleteModal(true)}> Delete </MenuItem>
             </Menu>
 
-            <Dialog
-                open={editModal}
-                onClose={handleCloseOnCancel}>
-                <PopUpEdit handleCloseOnCancel={handleCloseOnCancel} handleCloseOnSave={handleCloseOnSave} />
+            <Dialog open={editModal} onClose={handleCloseOnCancel}>
+                {
+                    modalName === "Edit_ActivityModal"
+                        ? <EditActivityModal id1={id1} id2={id2} handleCloseOnCancel={handleCloseOnCancel} handleCloseOnSave={handleCloseOnSave} />
+                        : <EditTaskModal handleCloseOnCancel={handleCloseOnCancel} handleCloseOnSave={handleCloseOnSave} />
+                }
             </Dialog>
-            
+
             <Dialog
                 open={deleteModal}
                 onClose={handleCloseOnCancel}>
-                <PopUpDelete handleCloseOnCancel={handleCloseOnCancel} handleCloseOnDelete={handleCloseOnDelete} />
+                <DeleteModal handleCloseOnCancel={handleCloseOnCancel} handleCloseOnDelete={handleCloseOnDelete} />
             </Dialog>
 
         </>

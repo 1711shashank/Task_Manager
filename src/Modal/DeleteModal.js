@@ -3,7 +3,7 @@ import React from 'react';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 
-const PopUpDelete = ({ handleCloseOnCancel, handleCloseOnDelete}) => {
+const DeleteModal = ({ handleCloseOnCancel, handleCloseOnDelete}) => {
 
 
     return (
@@ -24,4 +24,4 @@ const PopUpDelete = ({ handleCloseOnCancel, handleCloseOnDelete}) => {
     );
 }
 
-export default PopUpDelete
+export default DeleteModal
