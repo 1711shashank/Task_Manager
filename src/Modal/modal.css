@@ -1,0 +1,25 @@
+.editModal{
+    font-size: 2rem;
+    width: 45rem;
+    height: 20rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.editModal > h1 {
+    font-size: 2rem;
+    text-align: center;
+    color: #00002e;
+    font-weight: 300;
+
+}
+
+.editModalInput > *{
+    width: 100%;
+}
+.editModalButtons{
+    /* background-color: red ; */
+    padding-right: 2.4rem !important;
+}

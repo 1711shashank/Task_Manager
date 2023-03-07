@@ -7,44 +7,47 @@ import TaskContext from '../Context/TaskContext';
 import axios from "axios";
 
 
-const EditSubTaskModal = ({ taskId, subTaskId, subTaskName, handleCloseOnCancel}) => {
+const EditSubTaskModal = ({ taskId, subTaskId, subTaskName, handleCloseOnCancel }) => {
 
     const { fetchData } = useContext(TaskContext);
 
     const [newSubTaskName, setNewSubTaskName] = useState(subTaskName);
 
-    const updateSubTask = () =>{
+    const updateSubTask = () => {
 
-        const subTaskToBeUpdated = { taskId, subTaskId, newSubTaskName  };
-        console.log('Update SubTask',subTaskToBeUpdated);
+        const subTaskToBeUpdated = { taskId, subTaskId, newSubTaskName };
+        console.log('Update SubTask', subTaskToBeUpdated);
 
         axios.post(`http://localhost:5000/updateSubTask`, { subTaskToBeUpdated })
-        .then((res) => {
-            fetchData();
-        })
-        .catch((err) => {
-            alert("Server error!");
-        });
+            .then((res) => {
+                fetchData();
+            })
+            .catch((err) => {
+                alert("Server error!");
+            });
 
         handleCloseOnCancel();
     }
 
 
     return (
-        <div>
-            <DialogTitle id="responsive-dialog-title">
-                <TextField defaultValue={newSubTaskName} onChange={(e) => setNewSubTaskName(e.target.value)} id="filled-basic" label="Enter New Value" variant="filled" />
-            </DialogTitle>
+        <>
+            <div className='editModal'>
+                <h1> Enter New Task Name</h1>
+                <DialogTitle className='editModalInput' id="responsive-dialog-title">
+                    <TextField id="outlined-basic" variant="outlined" defaultValue={newSubTaskName} onChange={(e) => setNewSubTaskName(e.target.value)} />
+                </DialogTitle>
 
-            <DialogActions>
-                <Button onClick={handleCloseOnCancel}>
-                    Cancel
-                </Button>
-                <Button onClick={updateSubTask}>
-                    Save
-                </Button>
-            </DialogActions>
-        </div>
+                <DialogActions className='editModalButtons'>
+                    <Button variant="outlined" size="large" onClick={handleCloseOnCancel}>
+                        Cancel
+                    </Button>
+                    <Button variant="contained" size="large" type='submit' onClick={updateSubTask}>
+                        Save
+                    </Button>
+                </DialogActions>
+            </div>
+        </>
     );
 }
 
