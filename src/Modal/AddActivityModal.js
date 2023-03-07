@@ -49,9 +49,12 @@ const AddActivityModal = ({ fetchData, handleCloseOnCancel }) => {
 
                         <div>
                             <TextField id="outlined-required" className='modal__inputBoxTopic' required label="Topic" onChange={(e) => setTopic(e.target.value)} />
-                        </div><div> <TextField id="outlined-required" className='modal__inputBoxTopic' equired type='date' onChange={(e) => setDate(e.target.value)} />
                         </div>
-                        <div> <TextField id="outlined-multiline-static" className='modal__inputBoxDescription' onChange={(e) => setDescription(e.target.value)} label="Description" multiline rows={6} /></div>
+                        <div> 
+                            <TextField id="outlined-required" className='modal__inputBoxTopic' equired type='date' onChange={(e) => setDate(e.target.value)} />
+                        </div>
+                        <div> 
+                            <TextField id="outlined-multiline-static" className='modal__inputBoxDescription' onChange={(e) => setDescription(e.target.value)} label="Description" multiline rows={6} /></div>
                         <div className='modal__buttons'>
                             <Button variant="outlined" size="large" className='modal__saveButton' onClick={handleCloseOnCancel}> Cancel </Button>
                             <Button variant="contained" size="large" className='modal__saveButton' type='submit'> Save </Button>
@@ -59,8 +62,6 @@ const AddActivityModal = ({ fetchData, handleCloseOnCancel }) => {
                     </form>
                 </div>
             </div>
-
-
         </>
     )
 }

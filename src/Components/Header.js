@@ -23,19 +23,19 @@ const Header = () => {
             axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
                 headers: { Authorization: `Bearer ${user.access_token}`, Accept: 'application/json' }
             })
-            .then((res) => {
-                console.log('ressss', res);
-                setProfile(res.data);
-            })
-            .catch((err) => console.log(err));
+                .then((res) => {
+                    console.log('ressss', res);
+                    setProfile(res.data);
+                })
+                .catch((err) => console.log(err));
         }
     }, [user]);
 
 
     const addTask = () => {
-        const newEntry = { TaskName: 'New Task', SubTasks: [] };        
+        const newEntry = { taskName: 'New Task', subTasks: [] };
 
-        axios.post(`http://localhost:5000/addTask`,{newEntry: newEntry})
+        axios.post(`http://localhost:5000/addTask`, { newEntry })
             .then((res) => {
             })
             .catch((err) => {

@@ -14,10 +14,9 @@ const TasksBox = () => {
     }, [])
 
     const fetchData = () => {
-        console.log("fetchData");
         axios.get(`http://localhost:5000/getTask`)
             .then((res) => {
-                setTaskSheet(res.data.TaskSheetData);
+                setTaskSheet(res.data.taskSheetData);
             })
             .catch((err) => {
                 alert("Server error!");
@@ -47,7 +46,7 @@ const TasksBox = () => {
 
                     <div className='task__subtask'>
                         
-                        <SubTasksBox TaskId={item._id} subTasks={item.SubTasks} fetchData={fetchData} />
+                        <SubTasksBox taskId={item._id} subTasks={item.SubTasks} fetchData={fetchData} />
                     </div>
                 </div>
             ))}

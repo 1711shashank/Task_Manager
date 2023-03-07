@@ -13,21 +13,21 @@ const TaskProvider = (props) => {
     }, [])
 
     const fetchData = () => {
-        axios.get(`http://localhost:5000/getTask`)
-            .then((res) => {
-                setTaskSheet(res.data.TaskSheetData);
-            })
-            .catch((err) => {
-                alert("Server error!");
-            });
+        // axios.get(`http://localhost:5000/getTask`)
+        //     .then((res) => {
+        //         setTaskSheet(res.data.TaskSheetData);
+        //     })
+        //     .catch((err) => {
+        //         alert("Server error!");
+        //     });
 
-        axios.get(`http://localhost:5000/getActivity`)
-            .then((res) => {
-                setTimeSheet(res.data.TimeSheetData);
-            })
-            .catch((err) => {
-                alert("Server error!");
-            });
+        // axios.get(`http://localhost:5000/getActivity`)
+        //     .then((res) => {
+        //         setTimeSheet(res.data.TimeSheetData);
+        //     })
+        //     .catch((err) => {
+        //         alert("Server error!");
+        //     });
     }
 
 

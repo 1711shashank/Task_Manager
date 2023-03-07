@@ -9,7 +9,7 @@ const EditTaskModal = ({ taskId, taskName, handleCloseOnCancel }) => {
 
     const [newTaskName, setNewTaskName] = useState(taskName);
 
-    const UpdateSubTask = (e) =>{
+    const updateSubTask = (e) =>{
         const taskToBeUpdated = { taskId, newTaskName };
         console.log('Update SubTask',taskToBeUpdated);
 
@@ -35,7 +35,7 @@ const EditTaskModal = ({ taskId, taskName, handleCloseOnCancel }) => {
                 <Button onClick={handleCloseOnCancel}>
                     Cancel
                 </Button>
-                <Button onClick={() => UpdateSubTask(newTaskName)}>
+                <Button onClick={() => updateSubTask(newTaskName)}>
                     Save
                 </Button>
             </DialogActions>

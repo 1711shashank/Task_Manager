@@ -17,7 +17,7 @@ const EditActivityModal = ({ id1,id2, topic, date, description, handleCloseOnCan
     }, [])
 
 
-    const UpdateActivity = (e) =>{
+    const updateActivity = (e) =>{
         e.preventDefault();
         console.log('Inside update activity function');
         console.log("id1",id1,"id2", id2, newTopic,newDate,newDescription);
@@ -48,7 +48,7 @@ const EditActivityModal = ({ id1,id2, topic, date, description, handleCloseOnCan
                 <div className='modal'>
                     <h1 className='modal__heading'>Edit Activity Recode</h1>
 
-                    <form className='modal__form' onSubmit={UpdateActivity}>
+                    <form className='modal__form' onSubmit={updateActivity}>
 
                         <div>
                             <TextField id="outlined-required" className='modal__inputBoxTopic' defaultValue={newTopic} required label="newTopic" onChange={(e) => setNewTopic(e.target.value)} />

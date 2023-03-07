@@ -4,7 +4,7 @@ import uniqid from 'uniqid';
 import './SubTasksBox.css'
 import PopUpMenu from '../Modal/PopUpMenu';
 
-const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
+const SubTasksBox = ({ taskId, subTasks, fetchData }) => {
 
     const [newSubTask, setNewSubTask] = useState('');
 
@@ -14,7 +14,7 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
         const newEntry = { SubTaskId: uniqid(), SubTaskName: newSubTask, SubTaskStatus: false };
 
         axios
-            .post(`http://localhost:5000/addSubTask`, { TaskId: TaskId, SubTask: newEntry })
+            .post(`http://localhost:5000/addSubTask`, { taskId: taskId, subTask: newEntry })
             .then((res) => {
                 fetchData();
             })
@@ -27,7 +27,9 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
 
 
     const deleteSubTask = (taskId, subTaskId) => {
-        const subTaskToBeDeleted = { taskId: taskId, subTaskId }
+
+        const subTaskToBeDeleted = { taskId, subTaskId }
+        
         axios.post(`http://localhost:5000/deleteSubTask`, { subTaskToBeDeleted })
             .then((res) => {
                 console.log(res.data);
@@ -57,7 +59,7 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
                         <div className='subtasks__task' key={subTask.SubTaskId}>
                             <p>{subTask.SubTaskName}</p>
                             <PopUpMenu 
-                                id1={TaskId} 
+                                id1={taskId} 
                                 id2={subTask.SubTaskId} 
                                 subTaskName={subTask.SubTaskName}
                                 deleteFunction={deleteSubTask} 
