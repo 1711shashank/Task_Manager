@@ -5,7 +5,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import axios from "axios";
 
 
-const EditTaskModal = ({ taskId, taskName, handleCloseOnCancel }) => {
+const EditTaskModal = ({ taskId, taskName, handleCloseOnCancel, fetchData }) => {
 
     const [newTaskName, setNewTaskName] = useState(taskName);
 
@@ -15,7 +15,8 @@ const EditTaskModal = ({ taskId, taskName, handleCloseOnCancel }) => {
 
         axios.post(`http://localhost:5000/updateTask`, { taskToBeUpdated })
         .then((res) => {
-            console.log(res.data);
+            console.log("Update SubTask");
+            fetchData();
         })
         .catch((err) => {
             alert("Server error!");

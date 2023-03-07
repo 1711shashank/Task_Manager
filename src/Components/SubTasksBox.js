@@ -25,7 +25,6 @@ const SubTasksBox = ({ taskId, subTasks, fetchData }) => {
         setNewSubTask('');
     }
 
-
     const deleteSubTask = (taskId, subTaskId) => {
 
         const subTaskToBeDeleted = { taskId, subTaskId }
