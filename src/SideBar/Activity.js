@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CommitIcon from '@mui/icons-material/Commit';
-import './SideBar.css'
+import './Activity.css'
 import { Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import AddActivityModal from '../Modal/AddActivityModal';
@@ -12,8 +12,7 @@ import Dialog from '@mui/material/Dialog';
 import PopUpMenu from '../Modal/PopUpMenu';
 
 
-const SideBar = () => {
-
+const Activity = () => {
 
     const [timeSheet, setTimeSheet] = useState([]);
     const [addActivityModal, setAddActivityModal] = useState(false);
@@ -65,7 +64,15 @@ const SideBar = () => {
                                             <li className='timeLine__dayItem' key={item2.id}>
                                                 <div className='timeLine__dayItemHead'>
                                                     <h2>{item2.Topic}</h2>
-                                                    <PopUpMenu id1={item1._id} id2={item2.id} deleteFunction={deleteActivity} modalName="Edit_ActivityModal" />
+                                                    <PopUpMenu
+                                                        id1={item1._id}
+                                                        id2={item2.id}
+                                                        topic={item2.Topic}
+                                                        date={item1.Date}
+                                                        description={item2.Description}
+                                                        deleteFunction={deleteActivity}
+                                                        modalName="Edit_ActivityModal"
+                                                    />
                                                 </div>
                                                 <div className='timeLine__dayItemDescription'>
                                                     <p> {item2.Description} </p>
@@ -89,4 +96,4 @@ const SideBar = () => {
     )
 }
 
-export default SideBar
+export default Activity

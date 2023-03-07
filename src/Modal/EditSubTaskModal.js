@@ -1,31 +1,30 @@
 import { Button, TextField } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
-import DataContext from '../Context/DataContext'
+import axios from "axios";
 
 
-const EditSubTaskModal = ({ taskId, subTaskId, handleCloseOnCancel }) => {
+const EditSubTaskModal = ({ taskId, subTaskId, subTaskName, handleCloseOnCancel }) => {
 
-    const [subTaskName, setSubTaskName] = useState('SubTask Name UseState');
 
-    const {taskSheet} = useContext(DataContext);
-    // console.log(taskSheet);
+    const [newSubTaskName, setNewSubTaskName] = useState(subTaskName);
 
-    useEffect(()=>{
+    const updateSubTask = () =>{
 
-        const requiredTask = taskSheet.filter( curEle => curEle._id === taskId);
-        const requiredSubTask = requiredTask[0].SubTasks.filter( curEle => curEle.SubTaskId === subTaskId )
+        const subTaskToBeUpdated = { taskId, subTaskId, newSubTaskName  };
+        console.log('Update SubTask',subTaskToBeUpdated);
 
-        setSubTaskName (requiredSubTask[0].SubTaskName);
+        // axios.post(`http://localhost:5000/updateSubTask`, { subTaskToBeUpdated })
+        // .then((res) => {
+        //     console.log('front')
+        //     console.log(res.data);
+        // })
+        // .catch((err) => {
+        //     alert("Server error!");
+        // });
 
-        // console.log(requiredSubTask[0].SubTaskName);
-
-    },[])
-
-    const UpdateSubTask = (e) =>{
-        // e.preventDefault();
-        console.log('Inside update function');
+        // console.log('Inside update function',newSubTaskName);
         handleCloseOnCancel();
     }
 
@@ -33,14 +32,14 @@ const EditSubTaskModal = ({ taskId, subTaskId, handleCloseOnCancel }) => {
     return (
         <div>
             <DialogTitle id="responsive-dialog-title">
-                <TextField defaultValue={subTaskName} onChange={(e) => setSubTaskName(e.target.value)} id="filled-basic" label="Enter New Value" variant="filled" />
+                <TextField defaultValue={newSubTaskName} onChange={(e) => setNewSubTaskName(e.target.value)} id="filled-basic" label="Enter New Value" variant="filled" />
             </DialogTitle>
 
             <DialogActions>
                 <Button onClick={handleCloseOnCancel}>
                     Cancel
                 </Button>
-                <Button onClick={() => UpdateSubTask(subTaskName)}>
+                <Button onClick={updateSubTask}>
                     Save
                 </Button>
             </DialogActions>

@@ -56,7 +56,12 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
                     {subTasks.map((subTask) => (
                         <div className='subtasks__task' key={subTask.SubTaskId}>
                             <p>{subTask.SubTaskName}</p>
-                            <PopUpMenu id1={TaskId} id2={subTask.SubTaskId} deleteFunction={deleteSubTask}  modalName="Edit_SubTaskModal"/>
+                            <PopUpMenu 
+                                id1={TaskId} 
+                                id2={subTask.SubTaskId} 
+                                subTaskName={subTask.SubTaskName}
+                                deleteFunction={deleteSubTask} 
+                                modalName="Edit_SubTaskModal"/>
                         </div>
                     ))}
             </div>
