@@ -1,12 +1,15 @@
 import { Button, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
+import TaskContext from '../Context/TaskContext';
+
 import axios from "axios";
 
 
-const EditSubTaskModal = ({ taskId, subTaskId, subTaskName, handleCloseOnCancel, fetchData}) => {
+const EditSubTaskModal = ({ taskId, subTaskId, subTaskName, handleCloseOnCancel}) => {
 
+    const { fetchData } = useContext(TaskContext);
 
     const [newSubTaskName, setNewSubTaskName] = useState(subTaskName);
 
@@ -17,14 +20,11 @@ const EditSubTaskModal = ({ taskId, subTaskId, subTaskName, handleCloseOnCancel,
 
         axios.post(`http://localhost:5000/updateSubTask`, { subTaskToBeUpdated })
         .then((res) => {
-            console.log(res.data);
+            fetchData();
         })
         .catch((err) => {
             alert("Server error!");
         });
-
-        console.log("Before fetching");
-        fetchData();
 
         handleCloseOnCancel();
     }

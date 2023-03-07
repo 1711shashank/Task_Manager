@@ -10,7 +10,7 @@ import EditTaskModal from './EditTaskModal';
 import EditActivityModal from './EditActivityModal';
 import EditSubTaskModal from './EditSubTaskModal';
 
-const PopUpMenu = ({ id1, id2, taskName, subTaskName, topic, date, description, deleteFunction, fetchData, modalName }) => {
+const PopUpMenu = ({ id1, id2, taskName, subTaskName, topic, date, description, deleteFunction, modalName }) => {
 
     const [deleteModal, setDeleteModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
@@ -36,9 +36,9 @@ const PopUpMenu = ({ id1, id2, taskName, subTaskName, topic, date, description, 
 
             <Dialog open={editModal} onClose={handleCloseOnCancel}>
                 
-                    {modalName === "Edit_TaskModal" ? <EditTaskModal taskId={id1} taskName={taskName} handleCloseOnCancel={handleCloseOnCancel} fetchData={fetchData} /> : null }
-                    {modalName === "Edit_SubTaskModal" ? <EditSubTaskModal taskId={id1} subTaskId={id2} subTaskName={subTaskName} handleCloseOnCancel={handleCloseOnCancel} fetchData={fetchData}/> : null }
-                    {modalName === "Edit_ActivityModal" ? <EditActivityModal id1={id1} id2={id2} topic={topic} date={date} description={description} handleCloseOnCancel={handleCloseOnCancel}  fetchData={fetchData}/> : null }
+                    {modalName === "Edit_TaskModal" ? <EditTaskModal taskId={id1} taskName={taskName} handleCloseOnCancel={handleCloseOnCancel} /> : null }
+                    {modalName === "Edit_SubTaskModal" ? <EditSubTaskModal taskId={id1} subTaskId={id2} subTaskName={subTaskName} handleCloseOnCancel={handleCloseOnCancel} /> : null }
+                    {modalName === "Edit_ActivityModal" ? <EditActivityModal id1={id1} id2={id2} topic={topic} date={date} description={description} handleCloseOnCancel={handleCloseOnCancel} /> : null }
                 
             </Dialog>
 

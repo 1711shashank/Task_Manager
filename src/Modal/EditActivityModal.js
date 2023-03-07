@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, TextField } from '@mui/material';
+import TimeContext from '../Context/TimeContext';
+
 import axios from "axios";
 
 const EditActivityModal = ({ id1,id2, topic, date, description, handleCloseOnCancel }) => {
+
+    const { fetchData } = useContext(TimeContext);
 
     const [newTopic, setNewTopic] = useState(topic);
     const [newDate, setNewDate] = useState(date);
@@ -28,7 +32,7 @@ const EditActivityModal = ({ id1,id2, topic, date, description, handleCloseOnCan
 
         axios.post(`http://localhost:5000/updateActivity`, { activityToBeUpdated })
         .then((res) => {
-            console.log(res.data);
+            fetchData();
         })
         .catch((err) => {
             alert("Server error!");

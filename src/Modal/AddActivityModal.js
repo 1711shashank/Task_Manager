@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, TextField } from '@mui/material';
 import uniqid from 'uniqid';
 import axios from "axios";
+import TimeContext from '../Context/TimeContext';
 
-const AddActivityModal = ({ fetchData, handleCloseOnCancel }) => {
+
+const AddActivityModal = ({ handleCloseOnCancel }) => {
+
+    const { fetchData } = useContext(TimeContext);
 
     const [topic, setTopic] = useState('');
     const [date, setDate] = useState('');
