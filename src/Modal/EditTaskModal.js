@@ -1,19 +1,26 @@
 import { Button, TextField } from '@mui/material';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
-import DataContext from '../Context/DataContext'
+import axios from "axios";
 
 
 const EditTaskModal = ({ taskId, taskName, handleCloseOnCancel }) => {
 
     const [newTaskName, setNewTaskName] = useState(taskName);
 
-    const {taskSheet} = useContext(DataContext);
-    console.log(taskSheet); 
-
     const UpdateSubTask = (e) =>{
-        console.log( 'Inside update function' ,taskId, newTaskName);
+        const taskToBeUpdated = { taskId, newTaskName };
+        console.log('Update SubTask',taskToBeUpdated);
+
+        axios.post(`http://localhost:5000/updateTask`, { taskToBeUpdated })
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((err) => {
+            alert("Server error!");
+        });
+
         handleCloseOnCancel();
     }
 

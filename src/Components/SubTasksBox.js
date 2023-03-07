@@ -26,8 +26,8 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
     }
 
 
-    const deleteSubTask = (TaskId, SubTaskId) => {
-        const subTaskToBeDeleted = { TaskId: TaskId, SubTaskId }
+    const deleteSubTask = (taskId, subTaskId) => {
+        const subTaskToBeDeleted = { taskId: taskId, subTaskId }
         axios.post(`http://localhost:5000/deleteSubTask`, { subTaskToBeDeleted })
             .then((res) => {
                 console.log(res.data);
@@ -61,6 +61,7 @@ const SubTasksBox = ({ TaskId, subTasks, fetchData }) => {
                                 id2={subTask.SubTaskId} 
                                 subTaskName={subTask.SubTaskName}
                                 deleteFunction={deleteSubTask} 
+                                fetchData={fetchData}
                                 modalName="Edit_SubTaskModal"/>
                         </div>
                     ))}

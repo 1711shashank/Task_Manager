@@ -21,7 +21,7 @@ const TaskProvider = (props) => {
                 alert("Server error!");
             });
 
-            axios.get(`http://localhost:5000/getActivity`)
+        axios.get(`http://localhost:5000/getActivity`)
             .then((res) => {
                 setTimeSheet(res.data.TimeSheetData);
             })
@@ -32,7 +32,7 @@ const TaskProvider = (props) => {
 
 
     return (
-        <DataContext.Provider value={{ taskSheet, timeSheet }}>
+        <DataContext.Provider value={{ fetchData }}>
             {props.children}
         </DataContext.Provider>
     )

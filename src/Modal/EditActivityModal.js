@@ -23,6 +23,19 @@ const EditActivityModal = ({ id1,id2, topic, date, description, handleCloseOnCan
         console.log("id1",id1,"id2", id2, newTopic,newDate,newDescription);
         handleCloseOnCancel();
 
+        const activityToBeUpdated = { id1, id2, newTopic,newDate,newDescription };
+        console.log('Update ACtivity', activityToBeUpdated);
+
+        axios.post(`http://localhost:5000/updateActivity`, { activityToBeUpdated })
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((err) => {
+            alert("Server error!");
+        });
+
+        handleCloseOnCancel();
+
     }
 
     

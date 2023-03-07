@@ -5,7 +5,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import axios from "axios";
 
 
-const EditSubTaskModal = ({ taskId, subTaskId, subTaskName, handleCloseOnCancel }) => {
+const EditSubTaskModal = ({ taskId, subTaskId, subTaskName, handleCloseOnCancel, fetchData}) => {
 
 
     const [newSubTaskName, setNewSubTaskName] = useState(subTaskName);
@@ -15,16 +15,17 @@ const EditSubTaskModal = ({ taskId, subTaskId, subTaskName, handleCloseOnCancel 
         const subTaskToBeUpdated = { taskId, subTaskId, newSubTaskName  };
         console.log('Update SubTask',subTaskToBeUpdated);
 
-        // axios.post(`http://localhost:5000/updateSubTask`, { subTaskToBeUpdated })
-        // .then((res) => {
-        //     console.log('front')
-        //     console.log(res.data);
-        // })
-        // .catch((err) => {
-        //     alert("Server error!");
-        // });
+        axios.post(`http://localhost:5000/updateSubTask`, { subTaskToBeUpdated })
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((err) => {
+            alert("Server error!");
+        });
 
-        // console.log('Inside update function',newSubTaskName);
+        console.log("Before fetching");
+        fetchData();
+
         handleCloseOnCancel();
     }
 
