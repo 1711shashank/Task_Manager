@@ -52,7 +52,9 @@ const EditActivityModal = ({ id1,id2, topic, date, description, handleCloseOnCan
 
                         <div>
                             <TextField id="outlined-required" className='modal__inputBoxTopic' defaultValue={newTopic} required label="newTopic" onChange={(e) => setNewTopic(e.target.value)} />
-                        </div><div> <TextField id="outlined-required" className='modal__inputBoxTopic' defaultValue={newDate} equired type='newDate' onChange={(e) => setNewDate(e.target.value)} />
+                        </div>
+                        <div> 
+                            <TextField id="outlined-required" className='modal__inputBoxTopic' defaultValue={newDate} equired type='date' onChange={(e) => setNewDate(e.target.value)} />
                         </div>
                         <div> <TextField id="outlined-multiline-static" className='modal__inputBoxDescription' defaultValue={newDescription} onChange={(e) => setNewDescription(e.target.value)} label="newDescription" multiline rows={6} /></div>
                         <div className='modal__buttons'>
@@ -62,8 +64,6 @@ const EditActivityModal = ({ id1,id2, topic, date, description, handleCloseOnCan
                     </form>
                 </div>
             </div>
-
-
         </>
     )
 }

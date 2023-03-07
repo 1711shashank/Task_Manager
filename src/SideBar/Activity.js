@@ -4,11 +4,9 @@ import './Activity.css'
 import { Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import AddActivityModal from '../Modal/AddActivityModal';
-
 import moment from 'moment';
 import axios from 'axios';
 import Dialog from '@mui/material/Dialog';
-
 import PopUpMenu from '../Modal/PopUpMenu';
 
 
@@ -25,7 +23,7 @@ const Activity = () => {
     const fetchData = () => {
         axios.get(`http://localhost:5000/getActivity`)
             .then((res) => {
-                setTimeSheet(res.data.TimeSheetData);
+                setTimeSheet(res.data.timeSheetData);
             })
             .catch((err) => {
                 alert("Server error!");
