@@ -61,7 +61,7 @@ const AddActivityModal = ({ handleCloseOnCancel }) => {
                             <TextField id="outlined-multiline-static" className='modal__inputBoxDescription' onChange={(e) => setDescription(e.target.value)} label="Description" multiline rows={6} /></div>
                         <div className='modal__buttons'>
                             <Button variant="outlined" size="large" className='modal__saveButton' onClick={handleCloseOnCancel}> Cancel </Button>
-                            <Button variant="contained" size="large" className='modal__saveButton'> Save </Button>
+                            <Button variant="contained" size="large" className='modal__saveButton' type='submit'> Save </Button>
                         </div>
                     </form>
                 </div>

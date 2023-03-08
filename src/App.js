@@ -1,19 +1,63 @@
 import './App.css';
 import Header from './Components/Header';
 import Body from './Components/Body';
-import DataProvider from './Context/DataProvider';
+import TaskContext from './Context/TaskContext';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
-  return (
-    <>
-      <div className="App">
-        <DataProvider>
-          <Header/>
-          <Body/>
-        </DataProvider>
-      </div>
-    </>
-  );
+
+    const [taskSheet, setTaskSheet] = useState([]);
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    const fetchData = () => {
+        axios.get(`http://localhost:5000/getTask`)
+            .then((res) => {
+                setTaskSheet(res.data.taskSheetData);
+            })
+            .catch((err) => {
+                alert("Server error!");
+            });
+    }
+
+
+    const addTask = () => {
+        const newEntry = { taskName: 'New Task', subTasks: [] };
+
+        axios.post(`http://localhost:5000/addTask`, { newEntry })
+            .then((res) => {
+                fetchData();
+            })
+            .catch((err) => {
+                alert("Server error!");
+            });
+    }
+
+
+
+    const deleteTask = (_id) => {
+        axios.post(`http://localhost:5000/deleteTask`, { _id })
+            .then((res) => {
+                fetchData();
+            })
+            .catch((err) => {
+                alert("Server error!");
+            });
+    }
+
+    return (
+        <>
+            <div className="App">
+                <TaskContext.Provider>
+                    <Header addTask={addTask} />
+                    <Body taskSheet={taskSheet} fetchData={fetchData} deleteTask={deleteTask} />
+                </TaskContext.Provider>
+            </div>
+        </>
+    );
 }
 
 export default App;

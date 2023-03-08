@@ -6,35 +6,14 @@ import PopUpMenu from '../Modal/PopUpMenu';
 import TaskContext from '../Context/TaskContext';
 
 
-const TasksBox = () => {
+// const TasksBox = ({taskSheet,fetchData,deleteTask}) => {
+const TasksBox = ({props}) => {
 
-    const [taskSheet, setTaskSheet] = useState([]);
+    console.log(props);
 
-    useEffect(() => {
-        fetchData();
-    }, [])
-
-    const fetchData = () => {
-        axios.get(`http://localhost:5000/getTask`)
-            .then((res) => {
-                setTaskSheet(res.data.taskSheetData);
-            })
-            .catch((err) => {
-                alert("Server error!");
-            });
-    }
-
-    const deleteTask = (_id) => {
-        axios.post(`http://localhost:5000/deleteTask`, { _id })
-            .then((res) => {
-                fetchData();
-            })
-            .catch((err) => {
-                alert("Server error!");
-            });
-    }
-
-
+    const taskSheet = props.taskSheet;
+    const fetchData = props.fetchData;
+    const deleteTask = props.deleteTask;
 
     return (
         <>

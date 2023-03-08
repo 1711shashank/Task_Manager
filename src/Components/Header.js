@@ -4,7 +4,7 @@ import { Button } from '@mui/material'
 import axios from 'axios';
 import './Header.css'
 
-const Header = () => {
+const Header = ({addTask}) => {
 
     const [user, setUser] = useState(null);
     const [profile, setProfile] = useState(null);
@@ -30,18 +30,6 @@ const Header = () => {
                 .catch((err) => console.log(err));
         }
     }, [user]);
-
-
-    const addTask = () => {
-        const newEntry = { taskName: 'New Task', subTasks: [] };
-
-        axios.post(`http://localhost:5000/addTask`, { newEntry })
-            .then((res) => {
-            })
-            .catch((err) => {
-                alert("Server error!");
-            });
-    }
 
     return (
         <>
