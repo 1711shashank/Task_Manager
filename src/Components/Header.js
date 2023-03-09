@@ -39,11 +39,13 @@ const Header = ({addTask}) => {
                 </div>
                 <div className='header__right'>
                     <Button variant="outlined" size="large" onClick={addTask}>Add Task</Button>
-                    {profile ? (
+                    {
+                    profile ? (
                         <Button variant="outlined" onClick={logOut}>Log out</Button>
                     ) : (
                         <Button variant="outlined" onClick={() => login()}>Sign in</Button>
-                    )}
+                    )
+                    }
                 </div>
             </div>
         </>

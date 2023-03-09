@@ -7,7 +7,7 @@ import TimeContext from '../Context/TimeContext';
 
 const AddActivityModal = ({ handleCloseOnCancel }) => {
 
-    const { fetchData } = useContext(TimeContext);
+    const { getActivity } = useContext(TimeContext);
 
     const [topic, setTopic] = useState('');
     const [date, setDate] = useState('');
@@ -24,7 +24,7 @@ const AddActivityModal = ({ handleCloseOnCancel }) => {
         axios
             .post(`http://localhost:5000/addActivity`, { newEntry: newEntry })
             .then((res) => {
-                fetchData();
+                getActivity();
             })
             .catch((err) => {
                 alert("Server error!");

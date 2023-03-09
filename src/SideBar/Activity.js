@@ -18,10 +18,10 @@ const Activity = () => {
 
 
     useEffect(() => {
-        fetchData();
+        getActivity();
     }, [])
 
-    const fetchData = () => {
+    const getActivity = () => {
         axios.get(`http://localhost:5000/getActivity`)
             .then((res) => {
                 setTimeSheet(res.data.timeSheetData);
@@ -35,7 +35,7 @@ const Activity = () => {
         axios.post(`http://localhost:5000/deleteActivity`, { _id: id1, id: id2 })
             .then((res) => {
                 console.log(res.data);
-                fetchData();
+                getActivity();
             })
             .catch((err) => {
                 alert("Server error!");
@@ -45,18 +45,22 @@ const Activity = () => {
 
     return (
         <>
-            <TimeContext.Provider value={{ fetchData }}>
+            <TimeContext.Provider value={{ getActivity }}>
                 <div className='timeLine'>
+
                     <div className='timeLine__header'>
                         <Button className='timeLine__addButon' variant="outlined" onClick={() => setAddActivityModal(true)} startIcon={<AddIcon />}>Add</Button>
                     </div>
+
                     <div className='timeLine__body'>
                         {timeSheet.map((item1) => (
                             <div className='timeLine__container' key={item1._id}>
+                                
                                 <div className='timeLine__containerUp'>
                                     <CommitIcon className='timeLine__logo' />
                                     <p className='timeLine__date'>{moment(item1.Date).format('ll')}</p>
                                 </div>
+                                
                                 <div className='timeLine__containerDown'>
                                     <div className='timeLine__day'>
                                         <ol className='timeLine__dayItems'>

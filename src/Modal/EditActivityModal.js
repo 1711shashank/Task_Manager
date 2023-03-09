@@ -6,7 +6,7 @@ import axios from "axios";
 
 const EditActivityModal = ({ id1, id2, topic, date, description, handleCloseOnCancel }) => {
 
-    const { fetchData } = useContext(TimeContext);
+    const { getActivity } = useContext(TimeContext);
 
     const [newTopic, setNewTopic] = useState(topic);
     const [newDate, setNewDate] = useState(date);
@@ -23,16 +23,12 @@ const EditActivityModal = ({ id1, id2, topic, date, description, handleCloseOnCa
 
     const updateActivity = (e) => {
         e.preventDefault();
-        console.log('Inside update activity function');
-        console.log("id1", id1, "id2", id2, newTopic, newDate, newDescription);
-        handleCloseOnCancel();
 
         const activityToBeUpdated = { id1, id2, newTopic, newDate, newDescription };
-        console.log('Update ACtivity', activityToBeUpdated);
 
         axios.post(`http://localhost:5000/updateActivity`, { activityToBeUpdated })
             .then((res) => {
-                fetchData();
+                getActivity();
             })
             .catch((err) => {
                 alert("Server error!");

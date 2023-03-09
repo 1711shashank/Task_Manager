@@ -37,7 +37,6 @@ function App() {
     }
 
 
-
     const deleteTask = (_id) => {
         axios.post(`http://localhost:5000/deleteTask`, { _id })
             .then((res) => {
@@ -51,9 +50,9 @@ function App() {
     return (
         <>
             <div className="App">
-                <TaskContext.Provider>
+                <TaskContext.Provider value={{taskSheet, fetchData, deleteTask}}>
                     <Header addTask={addTask} />
-                    <Body taskSheet={taskSheet} fetchData={fetchData} deleteTask={deleteTask} />
+                    <Body taskSheet={taskSheet} fetchData={fetchData} deleteTask1={deleteTask} />
                 </TaskContext.Provider>
             </div>
         </>

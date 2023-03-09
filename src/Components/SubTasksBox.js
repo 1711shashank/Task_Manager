@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import axios from 'axios';
 import uniqid from 'uniqid';
 import './SubTasksBox.css'
 import PopUpMenu from '../Modal/PopUpMenu';
+import TaskContext from '../Context/TaskContext';
 
-const SubTasksBox = ({ taskId, subTasks, fetchData }) => {
+const SubTasksBox = ({ taskId, subTasks }) => {
+
+    const { fetchData } = useContext(TaskContext);
 
     const [newSubTask, setNewSubTask] = useState('');
 
@@ -28,7 +31,9 @@ const SubTasksBox = ({ taskId, subTasks, fetchData }) => {
     const deleteSubTask = (taskId, subTaskId) => {
 
         const subTaskToBeDeleted = { taskId, subTaskId }
-        
+
+        console.log(subTaskToBeDeleted);
+
         axios.post(`http://localhost:5000/deleteSubTask`, { subTaskToBeDeleted })
             .then((res) => {
                 console.log(res.data);
@@ -54,18 +59,20 @@ const SubTasksBox = ({ taskId, subTasks, fetchData }) => {
                     />
                 </form>
 
-                    {subTasks.map((subTask) => (
+                {
+                    subTasks.map((subTask) => (
                         <div className='subtasks__task' key={subTask.SubTaskId}>
                             <p>{subTask.SubTaskName}</p>
-                            <PopUpMenu 
-                                id1={taskId} 
-                                id2={subTask.SubTaskId} 
+                            <PopUpMenu
+                                id1={taskId}
+                                id2={subTask.SubTaskId}
                                 subTaskName={subTask.SubTaskName}
-                                deleteFunction={deleteSubTask} 
+                                deleteFunction={deleteSubTask}
                                 fetchData={fetchData}
-                                modalName="Edit_SubTaskModal"/>
+                                modalName="Edit_SubTaskModal" />
                         </div>
-                    ))}
+                    ))
+                }
             </div>
         </>
     )
