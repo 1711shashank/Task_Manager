@@ -22,7 +22,7 @@ const Activity = () => {
     }, [])
 
     const getActivity = () => {
-        axios.get(`http://localhost:5000/getActivity`)
+        axios.get(`http://localhost:5000/getActivity?Email=test2@gmail.com`)
             .then((res) => {
                 setTimeSheet(res.data.timeSheetData);
             })

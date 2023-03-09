@@ -1,7 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { googleLogout } from '@react-oauth/google';
+import React, { useContext, useEffect } from 'react';
 import { Button } from '@mui/material'
-import axios from 'axios';
 import './Header.css'
 import TaskContext from '../Context/TaskContext';
 
@@ -9,31 +7,33 @@ const Header = () => {
 
     const { addTask } = useContext(TaskContext);
 
-
-    const [user, setUser] = useState(null);
-    const [profile, setProfile] = useState(null);
-
-    const login = () => {
-        axios.get('http://localhost:5000/oauth');
-    }
-
-    const logOut = () => {
-        googleLogout();
-        setProfile(null);
+    const login = async () => {
+        try {
+            window.location.href = 'http://localhost:5000/oauth';
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     useEffect(() => {
-        if (user) {
-            axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
-                headers: { Authorization: `Bearer ${user.access_token}`, Accept: 'application/json' }
-            })
-                .then((res) => {
-                    console.log('ressss', res);
-                    setProfile(res.data);
-                })
-                .catch((err) => console.log(err));
+        // if(!localStorage.getItem('email')){
+
+        console.log('useEffect')
+
+        const urlParams = new URLSearchParams(window.location.search);
+
+        const email = urlParams.get('email');
+        if (email) {
+            localStorage.setItem('email', email);
+            console.log('Before')
+            window.location.href = 'http://localhost:3000';
+            console.log('After')
         }
-    }, [user]);
+
+       
+        // }
+    }, []);
+
 
     return (
         <>
@@ -43,13 +43,7 @@ const Header = () => {
                 </div>
                 <div className='header__right'>
                     <Button variant="outlined" size="large" onClick={addTask}>Add Task</Button>
-                    {
-                    profile ? (
-                        <Button variant="outlined" onClick={logOut}>Log out</Button>
-                    ) : (
-                        <Button variant="outlined" onClick={() => login()}>Sign in</Button>
-                    )
-                    }
+                    <Button variant="outlined" onClick={() => login()}>Sign in</Button>
                 </div>
             </div>
         </>
