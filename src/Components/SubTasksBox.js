@@ -8,7 +8,7 @@ import TaskContext from '../Context/TaskContext';
 const SubTasksBox = ({ taskId, subTasks }) => {
 
     const { fetchData } = useContext(TaskContext);
-
+    
     const [newSubTask, setNewSubTask] = useState('');
 
     const addNewSubTask = (e) => {
@@ -31,9 +31,9 @@ const SubTasksBox = ({ taskId, subTasks }) => {
     const deleteSubTask = (taskId, subTaskId) => {
 
         const subTaskToBeDeleted = { taskId, subTaskId }
-
+        
         console.log(subTaskToBeDeleted);
-
+        
         axios.post(`http://localhost:5000/deleteSubTask`, { subTaskToBeDeleted })
             .then((res) => {
                 console.log(res.data);
@@ -59,20 +59,20 @@ const SubTasksBox = ({ taskId, subTasks }) => {
                     />
                 </form>
 
-                {
+                    {
                     subTasks.map((subTask) => (
                         <div className='subtasks__task' key={subTask.SubTaskId}>
                             <p>{subTask.SubTaskName}</p>
-                            <PopUpMenu
-                                id1={taskId}
-                                id2={subTask.SubTaskId}
+                            <PopUpMenu 
+                                id1={taskId} 
+                                id2={subTask.SubTaskId} 
                                 subTaskName={subTask.SubTaskName}
-                                deleteFunction={deleteSubTask}
+                                deleteFunction={deleteSubTask} 
                                 fetchData={fetchData}
-                                modalName="Edit_SubTaskModal" />
+                                modalName="Edit_SubTaskModal"/>
                         </div>
                     ))
-                }
+                    }
             </div>
         </>
     )

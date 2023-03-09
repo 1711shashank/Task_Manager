@@ -3,11 +3,22 @@ import './TasksBox.css'
 import SubTasksBox from './SubTasksBox'
 import PopUpMenu from '../Modal/PopUpMenu';
 import TaskContext from '../Context/TaskContext';
+import axios from 'axios';
 
 
 const TasksBox = () => {
 
-    const { taskSheet } = useContext(TaskContext);
+    const { taskSheet,fetchData } = useContext(TaskContext);
+
+    const deleteTask = (_id) => {
+        axios.post(`http://localhost:5000/deleteTask`, { _id })
+            .then((res) => {
+                fetchData();
+            })
+            .catch((err) => {
+                alert("Server error!");
+            });
+    }
 
     return (
         <>
@@ -15,11 +26,10 @@ const TasksBox = () => {
                 <div className='task' key={item._id}>
                     <div className='task__header'>
                         <p className='task__name'> {item.TaskName}</p>
-                        <PopUpMenu id1={item._id} taskName={item.TaskName} modalName="Edit_TaskModal" />
+                        <PopUpMenu id1={item._id} taskName={item.TaskName} deleteFunction={deleteTask} modalName="Edit_TaskModal" />
                     </div>
 
                     <div className='task__subtask'>
-
                         <SubTasksBox taskId={item._id} subTasks={item.SubTasks} />
                     </div>
                 </div>

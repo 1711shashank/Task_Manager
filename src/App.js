@@ -25,7 +25,7 @@ function App() {
 
 
     const addTask = () => {
-        const newEntry = { taskName: 'New Task', subTasks: [] };
+        const newEntry = { email:"test1@gmail.com", taskName: 'New Task', subTasks: [] };
 
         axios.post(`http://localhost:5000/addTask`, { newEntry })
             .then((res) => {
@@ -37,22 +37,14 @@ function App() {
     }
 
 
-    const deleteTask = (_id) => {
-        axios.post(`http://localhost:5000/deleteTask`, { _id })
-            .then((res) => {
-                fetchData();
-            })
-            .catch((err) => {
-                alert("Server error!");
-            });
-    }
+    
 
     return (
         <>
             <div className="App">
-                <TaskContext.Provider value={{taskSheet, fetchData, deleteTask}}>
-                    <Header addTask={addTask} />
-                    <Body taskSheet={taskSheet} fetchData={fetchData} deleteTask1={deleteTask} />
+                <TaskContext.Provider value={{taskSheet, fetchData, addTask}}>
+                    <Header/>
+                    <Body/>
                 </TaskContext.Provider>
             </div>
         </>

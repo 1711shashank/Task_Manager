@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { googleLogout } from '@react-oauth/google';
 import { Button } from '@mui/material'
 import axios from 'axios';
 import './Header.css'
+import TaskContext from '../Context/TaskContext';
 
-const Header = ({addTask}) => {
+const Header = () => {
+
+    const { addTask } = useContext(TaskContext);
+
 
     const [user, setUser] = useState(null);
     const [profile, setProfile] = useState(null);

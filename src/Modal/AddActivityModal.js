@@ -17,6 +17,7 @@ const AddActivityModal = ({ handleCloseOnCancel }) => {
         e.preventDefault();
 
         const newEntry = {
+            Email:"test2@gmail.com",
             Date: date,
             Activity: { id: uniqid(), Topic: topic, Description: description }
         }
@@ -29,7 +30,6 @@ const AddActivityModal = ({ handleCloseOnCancel }) => {
             .catch((err) => {
                 alert("Server error!");
             });
-
         handleCloseOnCancel();
     };
 
@@ -55,7 +55,7 @@ const AddActivityModal = ({ handleCloseOnCancel }) => {
                             <TextField id="outlined-required" className='modal__inputBoxTopic' required label="Topic" onChange={(e) => setTopic(e.target.value)} />
                         </div>
                         <div> 
-                            <TextField id="outlined-required" className='modal__inputBoxTopic' equired type='date' onChange={(e) => setDate(e.target.value)} />
+                            <TextField id="outlined-required" className='modal__inputBoxTopic' required type='date' onChange={(e) => setDate(e.target.value)} />
                         </div>
                         <div> 
                             <TextField id="outlined-multiline-static" className='modal__inputBoxDescription' onChange={(e) => setDescription(e.target.value)} label="Description" multiline rows={6} /></div>
