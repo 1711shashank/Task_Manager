@@ -16,8 +16,10 @@ const AddActivityModal = ({ handleCloseOnCancel }) => {
     const addActivity = (e) => {
         e.preventDefault();
 
+        const email = localStorage.getItem('Email');
+        
         const newEntry = {
-            Email:"test2@gmail.com",
+            Email: email,
             Date: date,
             Activity: { id: uniqid(), Topic: topic, Description: description }
         }

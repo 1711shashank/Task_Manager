@@ -8,7 +8,7 @@ const Body = () => {
         <>
             <div className='body'>
                 <div className='body__taskBox'><TasksBox/></div>
-                <div className='body__activityBar'><Activity/> </div>
+                <div className='body__activityBar'><Activity/></div>
             </div>
         </>
     )

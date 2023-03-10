@@ -15,23 +15,29 @@ const Header = () => {
         }
     };
 
-    useEffect(() => {
-        // if(!localStorage.getItem('email')){
+    const logout = async () => {
+        localStorage.removeItem('Email');
+        localStorage.removeItem('Name');
+        window.location.href = 'http://localhost:3000';
+    }
 
-        console.log('useEffect')
+    useEffect(() => {
+
 
         const urlParams = new URLSearchParams(window.location.search);
-
         const email = urlParams.get('email');
+        const name = urlParams.get('name');
+
+        console.log('useEffect', name, email);
+
+
         if (email) {
-            localStorage.setItem('email', email);
-            console.log('Before')
+            localStorage.setItem('Email', email);
+            localStorage.setItem('Name', name);
             window.location.href = 'http://localhost:3000';
-            console.log('After')
         }
 
-       
-        // }
+
     }, []);
 
 
@@ -42,8 +48,15 @@ const Header = () => {
                     <p>Task Manager</p>
                 </div>
                 <div className='header__right'>
-                    <Button variant="outlined" size="large" onClick={addTask}>Add Task</Button>
-                    <Button variant="outlined" onClick={() => login()}>Sign in</Button>
+
+                    {
+                        localStorage.getItem('Email') === null
+                            ? <Button onClick={login}> Sign in </Button>
+                            : <div>
+                                <Button variant="outlined" size="large" onClick={addTask}>Add Task</Button>
+                                <Button onClick={logout}> Log Out </Button>
+                              </div>
+                    }
                 </div>
             </div>
         </>

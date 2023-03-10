@@ -4,6 +4,8 @@ import Body from './Components/Body';
 import TaskContext from './Context/TaskContext';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Button } from '@mui/material';
+import LandingPage from './LandingPage';
 
 function App() {
 
@@ -14,7 +16,11 @@ function App() {
     }, [])
 
     const fetchData = () => {
-        axios.get(`http://localhost:5000/getTask`)
+
+        const email = localStorage.getItem('Email');
+        console.log(email);
+
+        axios.get(`http://localhost:5000/getTask?Email=${email}`)
             .then((res) => {
                 setTaskSheet(res.data.taskSheetData);
             })
@@ -25,7 +31,9 @@ function App() {
 
 
     const addTask = () => {
-        const newEntry = { email:"test1@gmail.com", taskName: 'New Task', subTasks: [] };
+
+        const email = localStorage.getItem('Email');
+        const newEntry = { Email: email, TaskName: 'New Task', SubTasks: [] };
 
         axios.post(`http://localhost:5000/addTask`, { newEntry })
             .then((res) => {
@@ -44,7 +52,11 @@ function App() {
             <div className="App">
                 <TaskContext.Provider value={{taskSheet, fetchData, addTask}}>
                     <Header/>
-                    <Body/>
+                    {
+                        localStorage.getItem('Email') === null
+                            ? <LandingPage/> 
+                            : <Body/>  
+                    }
                 </TaskContext.Provider>
             </div>
         </>
