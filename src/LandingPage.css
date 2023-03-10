@@ -1,0 +1,25 @@
+.LandingPage{
+    display: flex;
+    height: 92vh;
+}
+.LandingPage-left{
+    width: 70%;
+    background-color: lightseagreen;
+}
+.LandingPage-right{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.LandingPage-rightButton{
+    height: 5rem;
+    width: 25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.LandingPage-rightButton > p{
+    margin-left: 1rem;
+}
+
