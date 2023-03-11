@@ -4,7 +4,6 @@ import Body from './Components/Body';
 import TaskContext from './Context/TaskContext';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button } from '@mui/material';
 import LandingPage from './LandingPage';
 
 function App() {
