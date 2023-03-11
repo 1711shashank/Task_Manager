@@ -18,7 +18,7 @@ const Header = () => {
     const logout = async () => {
         localStorage.removeItem('Email');
         localStorage.removeItem('Name');
-        window.location.href = 'http://localhost:3000';
+        window.location.href = 'https://taskmanagger.netlify.app/';
     }
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const Header = () => {
         if (email) {
             localStorage.setItem('Email', email);
             localStorage.setItem('Name', name);
-            window.location.href = 'http://localhost:3000';
+            window.location.href = 'https://taskmanagger.netlify.app/';
         }
 
 
