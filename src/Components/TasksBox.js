@@ -11,12 +11,12 @@ const TasksBox = () => {
     const { taskSheet,fetchData } = useContext(TaskContext);
 
     const deleteTask = (_id) => {
-        axios.post(`http://localhost:5000/deleteTask`, { _id })
+        axios.post(`https://task-manager-backend-bnjq.onrender.com/deleteTask`, { _id })
             .then((res) => {
                 fetchData();
             })
             .catch((err) => {
-                alert("Server error!");
+                console.log(err);
             });
     }
 

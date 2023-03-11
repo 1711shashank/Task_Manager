@@ -17,7 +17,7 @@ const SubTasksBox = ({ taskId, subTasks }) => {
         const newEntry = { SubTaskId: uniqid(), SubTaskName: newSubTask, SubTaskStatus: false };
 
         axios
-            .post(`http://localhost:5000/addSubTask`, { taskId: taskId, subTask: newEntry })
+            .post(`https://task-manager-backend-bnjq.onrender.com/addSubTask`, { taskId: taskId, subTask: newEntry })
             .then((res) => {
                 fetchData();
             })
@@ -34,13 +34,13 @@ const SubTasksBox = ({ taskId, subTasks }) => {
         
         console.log(subTaskToBeDeleted);
         
-        axios.post(`http://localhost:5000/deleteSubTask`, { subTaskToBeDeleted })
+        axios.post(`https://task-manager-backend-bnjq.onrender.com/deleteSubTask`, { subTaskToBeDeleted })
             .then((res) => {
                 console.log(res.data);
                 fetchData();
             })
             .catch((err) => {
-                alert("Server error!");
+                console.log(err);
             });
     }
 

@@ -25,23 +25,23 @@ const Activity = () => {
         const email = localStorage.getItem('Email');
         console.log(email);
 
-        axios.get(`http://localhost:5000/getActivity?Email=${email}`)
+        axios.get(`https://task-manager-backend-bnjq.onrender.com/getActivity?Email=${email}`)
             .then((res) => {
                 setTimeSheet(res.data.timeSheetData);
             })
             .catch((err) => {
-                alert("Server error!");
+                console.log(err);
             });
     }
 
     const deleteActivity = (id1, id2) => {
-        axios.post(`http://localhost:5000/deleteActivity`, { _id: id1, id: id2 })
+        axios.post(`https://task-manager-backend-bnjq.onrender.com/deleteActivity`, { _id: id1, id: id2 })
             .then((res) => {
                 console.log(res.data);
                 getActivity();
             })
             .catch((err) => {
-                alert("Server error!");
+                console.log(err);
             });
     }
 

@@ -25,12 +25,12 @@ const AddActivityModal = ({ handleCloseOnCancel }) => {
         }
 
         axios
-            .post(`http://localhost:5000/addActivity`, { newEntry: newEntry })
+            .post(`https://task-manager-backend-bnjq.onrender.com/addActivity`, { newEntry: newEntry })
             .then((res) => {
                 getActivity();
             })
             .catch((err) => {
-                alert("Server error!");
+                console.log(err);
             });
         handleCloseOnCancel();
     };

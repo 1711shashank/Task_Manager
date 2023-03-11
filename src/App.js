@@ -20,12 +20,12 @@ function App() {
         const email = localStorage.getItem('Email');
         console.log(email);
 
-        axios.get(`http://localhost:5000/getTask?Email=${email}`)
+        axios.get(`https://task-manager-backend-bnjq.onrender.com/getTask?Email=${email}`)
             .then((res) => {
                 setTaskSheet(res.data.taskSheetData);
             })
             .catch((err) => {
-                alert("Server error!");
+                console.log(err);
             });
     }
 
@@ -35,12 +35,12 @@ function App() {
         const email = localStorage.getItem('Email');
         const newEntry = { Email: email, TaskName: 'New Task', SubTasks: [] };
 
-        axios.post(`http://localhost:5000/addTask`, { newEntry })
+        axios.post(`https://task-manager-backend-bnjq.onrender.com/addTask`, { newEntry })
             .then((res) => {
                 fetchData();
             })
             .catch((err) => {
-                alert("Server error!");
+                console.log(err);
             });
     }
 

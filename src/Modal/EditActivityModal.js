@@ -26,12 +26,12 @@ const EditActivityModal = ({ id1, id2, topic, date, description, handleCloseOnCa
 
         const activityToBeUpdated = { id1, id2, newTopic, newDate, newDescription };
 
-        axios.post(`http://localhost:5000/updateActivity`, { activityToBeUpdated })
+        axios.post(`https://task-manager-backend-bnjq.onrender.com/updateActivity`, { activityToBeUpdated })
             .then((res) => {
                 getActivity();
             })
             .catch((err) => {
-                alert("Server error!");
+                console.log(err);
             });
 
         handleCloseOnCancel();
