@@ -23,13 +23,9 @@ const Header = () => {
 
     useEffect(() => {
 
-
         const urlParams = new URLSearchParams(window.location.search);
         const email = urlParams.get('email');
         const name = urlParams.get('name');
-
-        console.log('useEffect', name, email);
-
 
         if (email) {
             localStorage.setItem('Email', email);
@@ -48,14 +44,13 @@ const Header = () => {
                     <p>Task Manager</p>
                 </div>
                 <div className='header__right'>
-
                     {
                         localStorage.getItem('Email') === null
-                            ? <Button onClick={login}> Sign in </Button>
+                            ? <></>
                             : <div>
                                 <Button variant="outlined" size="large" onClick={addTask}>Add Task</Button>
                                 <Button onClick={logout}> Log Out </Button>
-                              </div>
+                            </div>
                     }
                 </div>
             </div>

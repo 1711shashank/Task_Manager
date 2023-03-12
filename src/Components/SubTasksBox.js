@@ -31,12 +31,9 @@ const SubTasksBox = ({ taskId, subTasks }) => {
     const deleteSubTask = (taskId, subTaskId) => {
 
         const subTaskToBeDeleted = { taskId, subTaskId }
-        
-        console.log(subTaskToBeDeleted);
-        
+                
         axios.post(`https://task-manager-backend-bnjq.onrender.com/deleteSubTask`, { subTaskToBeDeleted })
             .then((res) => {
-                console.log(res.data);
                 fetchData();
             })
             .catch((err) => {

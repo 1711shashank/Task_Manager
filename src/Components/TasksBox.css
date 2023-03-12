@@ -4,6 +4,7 @@
     background-color: #E2E8F0;
     min-width: 30rem;
     max-width: 30rem;
+    max-height: 40rem;
     aspect-ratio: 3/4;
     border-radius: 10px;
 }

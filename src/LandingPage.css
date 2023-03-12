@@ -1,18 +1,41 @@
 .LandingPage{
     display: flex;
-    height: 92vh;
+    height: 100vh;
 }
 .LandingPage-left{
     width: 70%;
-    background-color: lightseagreen;
-}
-.LandingPage-right{
-    width: 30%;
+    background-color: #EFECE8;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+.LandingPage-left > img{
+    width: 60%;
+    object-fit: contain;
+    border-radius: 3rem;
+    
+}
+.LandingPage-right{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFE;
+}
+
+.LandingPage-right > img{
+    margin: 4rem 0 4rem 0;
+    width: 40%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 1px solid gray;
+}
+
+
 .LandingPage-rightButton{
+    width: 60% !important;
     height: 5rem;
     width: 25rem;
     display: flex;

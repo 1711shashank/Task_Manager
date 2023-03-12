@@ -23,7 +23,6 @@ const Activity = () => {
 
     const getActivity = () => {
         const email = localStorage.getItem('Email');
-        console.log(email);
 
         axios.get(`https://task-manager-backend-bnjq.onrender.com/getActivity?Email=${email}`)
             .then((res) => {
@@ -37,7 +36,6 @@ const Activity = () => {
     const deleteActivity = (id1, id2) => {
         axios.post(`https://task-manager-backend-bnjq.onrender.com/deleteActivity`, { _id: id1, id: id2 })
             .then((res) => {
-                console.log(res.data);
                 getActivity();
             })
             .catch((err) => {

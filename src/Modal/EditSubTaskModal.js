@@ -16,7 +16,6 @@ const EditSubTaskModal = ({ taskId, subTaskId, subTaskName, handleCloseOnCancel 
     const updateSubTask = () => {
 
         const subTaskToBeUpdated = { taskId, subTaskId, newSubTaskName };
-        console.log('Update SubTask', subTaskToBeUpdated);
 
         axios.post(`https://task-manager-backend-bnjq.onrender.com/updateSubTask`, { subTaskToBeUpdated })
             .then((res) => {

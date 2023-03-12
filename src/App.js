@@ -17,7 +17,6 @@ function App() {
     const fetchData = () => {
 
         const email = localStorage.getItem('Email');
-        console.log(email);
 
         axios.get(`https://task-manager-backend-bnjq.onrender.com/getTask?Email=${email}`)
             .then((res) => {
@@ -44,17 +43,16 @@ function App() {
     }
 
 
-    
+
 
     return (
         <>
             <div className="App">
-                <TaskContext.Provider value={{taskSheet, fetchData, addTask}}>
-                    <Header/>
+                <TaskContext.Provider value={{ taskSheet, fetchData, addTask }}>
                     {
                         localStorage.getItem('Email') === null
-                            ? <LandingPage/> 
-                            : <Body/>  
+                            ? <LandingPage />
+                            : <> <Header /> <Body />  </>
                     }
                 </TaskContext.Provider>
             </div>

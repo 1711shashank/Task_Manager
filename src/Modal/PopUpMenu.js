@@ -22,7 +22,6 @@ const PopUpMenu = ({ id1, id2, taskName, subTaskName, topic, date, description, 
     };
 
     const handleCloseOnDelete = () => {
-        console.log('delete', id1, id2)
         setDeleteModal(false);
         
         //auto selete which one to delete -> taks / subtask 

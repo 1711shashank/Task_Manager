@@ -5,11 +5,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 8vh;
+    height: 6rem;
 }
 
 .header__left > p {
     font-size: 3rem;
+    margin: 1rem;
 }
 
 .header__right{
