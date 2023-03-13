@@ -14,6 +14,23 @@ function App() {
         fetchData();
     }, [])
 
+    useEffect(() => {
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+        const name = urlParams.get('name');
+
+        console.log(urlParams);
+
+        if (email) {
+            localStorage.setItem('Email', email);
+            localStorage.setItem('Name', name);
+
+            window.location.href = 'https://task-manager-e3i7.onrender.com/';
+        }
+
+    }, []);
+
     const fetchData = () => {
 
         const email = localStorage.getItem('Email');
@@ -41,8 +58,6 @@ function App() {
                 console.log(err);
             });
     }
-
-
 
 
     return (
