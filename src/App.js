@@ -11,6 +11,7 @@ function App() {
     const [taskSheet, setTaskSheet] = useState([]);
 
     useEffect(() => {
+        document.title = 'My Page Title';
         fetchData();
     }, [])
 
@@ -19,8 +20,6 @@ function App() {
         const urlParams = new URLSearchParams(window.location.search);
         const email = urlParams.get('email');
         const name = urlParams.get('name');
-
-        console.log(urlParams);
 
         if (email) {
             localStorage.setItem('Email', email);

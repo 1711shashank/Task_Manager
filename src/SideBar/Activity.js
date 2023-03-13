@@ -76,7 +76,6 @@ const Activity = () => {
                                                             date={item1.Date}
                                                             description={item2.Description}
                                                             deleteFunction={deleteActivity}
-                                                            modalName="Edit_ActivityModal"
                                                         />
                                                     </div>
                                                     <div className='timeLine__dayItemDescription'>

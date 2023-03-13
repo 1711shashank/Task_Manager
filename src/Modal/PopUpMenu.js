@@ -6,9 +6,7 @@ import '@szhsin/react-menu/dist/transitions/slide.css';
 
 import Dialog from '@mui/material/Dialog';
 import DeleteModal from './DeleteModal';
-import EditTaskModal from './EditTaskModal';
 import EditActivityModal from './EditActivityModal';
-import EditSubTaskModal from './EditSubTaskModal';
 
 const PopUpMenu = ({ id1, id2, taskName, subTaskName, topic, date, description, deleteFunction, modalName }) => {
 
@@ -23,9 +21,6 @@ const PopUpMenu = ({ id1, id2, taskName, subTaskName, topic, date, description, 
 
     const handleCloseOnDelete = () => {
         setDeleteModal(false);
-        
-        //auto selete which one to delete -> taks / subtask 
-        //from the delete function is called 
         deleteFunction(id1, id2);
     };
 
@@ -37,11 +32,7 @@ const PopUpMenu = ({ id1, id2, taskName, subTaskName, topic, date, description, 
             </Menu>
 
             <Dialog open={editModal} onClose={handleCloseOnCancel}>
-                
-                    {modalName === "Edit_TaskModal" ? <EditTaskModal taskId={id1} taskName={taskName} handleCloseOnCancel={handleCloseOnCancel} /> : null }
-                    {modalName === "Edit_SubTaskModal" ? <EditSubTaskModal taskId={id1} subTaskId={id2} subTaskName={subTaskName} handleCloseOnCancel={handleCloseOnCancel} /> : null }
-                    {modalName === "Edit_ActivityModal" ? <EditActivityModal id1={id1} id2={id2} topic={topic} date={date} description={description} handleCloseOnCancel={handleCloseOnCancel} /> : null }
-                
+                <EditActivityModal id1={id1} id2={id2} topic={topic} date={date} description={description} handleCloseOnCancel={handleCloseOnCancel} />  
             </Dialog>
 
             <Dialog

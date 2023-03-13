@@ -2,14 +2,34 @@ import React, { useContext, useState } from 'react'
 import axios from 'axios';
 import uniqid from 'uniqid';
 import './SubTasksBox.css'
-import PopUpMenu from '../Modal/PopUpMenu';
 import TaskContext from '../Context/TaskContext';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import { Dialog } from '@mui/material';
+import DeleteModal from '../Modal/DeleteModal';
+import EditSubTaskModal from '../Modal/EditSubTaskModal';
+
 
 const SubTasksBox = ({ taskId, subTasks }) => {
 
     const { fetchData } = useContext(TaskContext);
-    
+
     const [newSubTask, setNewSubTask] = useState('');
+    const [curSubTaskId, setCurSubTaskId] = useState('');
+    const [curSubTaskName, setCurSubTaskName] = useState('');
+    const [deleteModal, setDeleteModal] = useState(false);
+    const [editModal, setEditModal] = useState(false);
+
+
+    const handleCloseOnCancel = () => {
+        setDeleteModal(false);
+        setEditModal(false);
+    };
+
+    const handleCloseOnDelete = () => {
+        setDeleteModal(false);
+        deleteSubTask(taskId, curSubTaskId);
+    };
 
     const addNewSubTask = (e) => {
         e.preventDefault();
@@ -31,7 +51,7 @@ const SubTasksBox = ({ taskId, subTasks }) => {
     const deleteSubTask = (taskId, subTaskId) => {
 
         const subTaskToBeDeleted = { taskId, subTaskId }
-                
+
         axios.post(`https://task-manager-backend-bnjq.onrender.com/deleteSubTask`, { subTaskToBeDeleted })
             .then((res) => {
                 fetchData();
@@ -48,7 +68,7 @@ const SubTasksBox = ({ taskId, subTasks }) => {
                 <form className='subtasks__task'>
                     <input
                         className='subtasks_add'
-                        placeholder="Add Task"
+                        placeholder="Add Sub Task"
                         type='text'
                         value={newSubTask}
                         onChange={(e) => setNewSubTask(e.target.value)}
@@ -56,21 +76,40 @@ const SubTasksBox = ({ taskId, subTasks }) => {
                     />
                 </form>
 
-                    {
+                {
                     subTasks.map((subTask) => (
                         <div className='subtasks__task' key={subTask.SubTaskId}>
                             <p>{subTask.SubTaskName}</p>
-                            <PopUpMenu 
-                                id1={taskId} 
-                                id2={subTask.SubTaskId} 
-                                subTaskName={subTask.SubTaskName}
-                                deleteFunction={deleteSubTask} 
-                                fetchData={fetchData}
-                                modalName="Edit_SubTaskModal"/>
+                            <div>
+                                <EditIcon
+                                    sx={{ fontSize: 12, color: "#979797", marginRight: "5px" }}
+                                    handleCloseOnCancel={handleCloseOnCancel}
+                                    onClick={() => { setEditModal(true); setCurSubTaskId(subTask.SubTaskId); setCurSubTaskName(subTask.SubTaskName) }}
+                                />
+
+                                <DeleteIcon
+                                    sx={{ fontSize: 12, color: "#979797" }}
+                                    handleCloseOnCancel={handleCloseOnCancel}
+                                    handleCloseOnDelete={handleCloseOnDelete}
+                                    onClick={() => { setDeleteModal(true); setCurSubTaskId(subTask.SubTaskId); }}
+                                />
+                            </div>
                         </div>
                     ))
-                    }
+                }
             </div>
+
+
+            {/* Modals */}     
+            <>  
+                <Dialog open={editModal} onClose={handleCloseOnCancel}>
+                    <EditSubTaskModal taskId={taskId} subTaskId={curSubTaskId} subTaskName={curSubTaskName} handleCloseOnCancel={handleCloseOnCancel} />
+                </Dialog>
+
+                <Dialog open={deleteModal} onClose={handleCloseOnCancel}>
+                    <DeleteModal handleCloseOnCancel={handleCloseOnCancel} handleCloseOnDelete={handleCloseOnDelete} />
+                </Dialog>
+            </>
         </>
     )
 }
