@@ -8,7 +8,7 @@ import Dialog from '@mui/material/Dialog';
 import DeleteModal from './DeleteModal';
 import EditActivityModal from './EditActivityModal';
 
-const PopUpMenu = ({ id1, id2, taskName, subTaskName, topic, date, description, deleteFunction, modalName }) => {
+const PopUpMenu = ({ id1, id2, topic, date, description, deleteFunction }) => {
 
     const [deleteModal, setDeleteModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
@@ -35,9 +35,7 @@ const PopUpMenu = ({ id1, id2, taskName, subTaskName, topic, date, description, 
                 <EditActivityModal id1={id1} id2={id2} topic={topic} date={date} description={description} handleCloseOnCancel={handleCloseOnCancel} />  
             </Dialog>
 
-            <Dialog
-                open={deleteModal}
-                onClose={handleCloseOnCancel}>
+            <Dialog open={deleteModal} onClose={handleCloseOnCancel}>
                 <DeleteModal handleCloseOnCancel={handleCloseOnCancel} handleCloseOnDelete={handleCloseOnDelete} />
             </Dialog>
 

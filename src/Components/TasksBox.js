@@ -47,7 +47,7 @@ const TasksBox = () => {
                         <p className='task__name'> {item.TaskName}</p>
                         <div>
                                 <EditIcon
-                                    sx={{ fontSize: 16, color: "#979797", marginRight: "5px" }}
+                                    sx={{ fontSize: 16, color: "#979797", marginRight: "8px" }}
                                     handleCloseOnCancel={handleCloseOnCancel}
                                     onClick={() => { setEditModal(true); setCurTaskId(item._id); setCurTaskName(item.TaskName) }}
                                 />

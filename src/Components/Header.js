@@ -1,11 +1,15 @@
-import React, { useContext } from 'react';
-import { Button } from '@mui/material'
+import React, { useState } from 'react';
+import { Button, Dialog } from '@mui/material'
 import './Header.css'
-import TaskContext from '../Context/TaskContext';
+import AddTaskModal from '../Modal/AddTaskModal';
 
 const Header = () => {
 
-    const { addTask } = useContext(TaskContext);
+    const [addModal, setAddModal] = useState(false);
+
+    const handleCloseOnCancel = () => {
+        setAddModal(false);
+    };
 
     const logout = async () => {
         localStorage.removeItem('Email');
@@ -24,12 +28,19 @@ const Header = () => {
                     {
                         (localStorage.getItem('Email') !== null) &&
                         <div>
-                            <Button variant="outlined" size="large" onClick={addTask}>Add Task</Button>
+                            <Button variant="outlined" onClick={() => { setAddModal(true)}}>Add Task</Button>
                             <Button onClick={logout}> Log Out </Button>
                         </div>
                     }
                 </div>
             </div>
+
+            {/* Modals */}     
+            <>  
+                <Dialog open={addModal} onClose={handleCloseOnCancel}>
+                    <AddTaskModal handleCloseOnCancel={handleCloseOnCancel} />
+                </Dialog>
+            </>
         </>
 
     )

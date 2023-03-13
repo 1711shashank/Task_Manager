@@ -44,10 +44,10 @@ function App() {
     }
 
 
-    const addTask = () => {
+    const addTask = (taskName) => {
 
         const email = localStorage.getItem('Email');
-        const newEntry = { Email: email, TaskName: 'New Task', SubTasks: [] };
+        const newEntry = { Email: email, TaskName: taskName, SubTasks: [] };
 
         axios.post(`https://task-manager-backend-bnjq.onrender.com/addTask`, { newEntry })
             .then((res) => {
