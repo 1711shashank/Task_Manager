@@ -24,7 +24,9 @@ const EditActivityModal = ({ id1, id2, topic, date, description, handleCloseOnCa
     const updateActivity = (e) => {
         e.preventDefault();
 
-        const activityToBeUpdated = { id1, id2, newTopic, newDate, newDescription };
+        const email = localStorage.getItem('Email');
+
+        const activityToBeUpdated = { id1, id2, email, newTopic, newDate, newDescription };
 
         axios.post(`https://task-manager-backend-bnjq.onrender.com/updateActivity`, { activityToBeUpdated })
             .then((res) => {

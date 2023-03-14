@@ -11,7 +11,7 @@ function App() {
     const [taskSheet, setTaskSheet] = useState([]);
 
     useEffect(() => {
-        document.title = 'My Page Title';
+        document.title = 'Task Manager';
         fetchData();
     }, [])
 
