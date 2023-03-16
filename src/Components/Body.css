@@ -1,7 +1,7 @@
 .body {
     padding: 1rem;
     display: flex;
-    background-color: #FAFBFB;
+    background-color: white;
     height: 100vh;
 }
 
@@ -13,4 +13,30 @@
 
 .body__activityBar {
     width: 30%;
+}
+
+@media screen and (max-width: 935px) {
+    .body__taskBox{
+        width: 50%;
+        justify-content: center;
+    }
+    .body__activityBar{
+        width: 50%;
+    }
+}
+@media screen and (max-width: 615px) {
+    .body {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+
+    }
+    .body__taskBox{
+        width: 100%;
+    }
+    .body__activityBar{
+        width: 100%;
+    }
 }

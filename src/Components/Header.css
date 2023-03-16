@@ -9,11 +9,16 @@
 }
 
 .header__left > p {
+    display: flex;
+    padding: 1rem;
+    float: left;
     font-size: 3rem;
     margin: 1rem;
 }
 
 .header__right{
     display: flex;
+    flex-wrap: nowrap;
+    float: inline-end;
 }
 
